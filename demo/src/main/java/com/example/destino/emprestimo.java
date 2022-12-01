@@ -1,6 +1,6 @@
 package com.example.destino;
 
-public class emprestimo {
+public class Emprestimo {
     private float valor;
     private float tempo;
 }
