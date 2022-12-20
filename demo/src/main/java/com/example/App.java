@@ -38,7 +38,7 @@ public class App
     public static int verMenu(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Cadastrar \n2. Entrar \n3. Sair",
+                "1. Cadastrar Funcionário \n2. Entrar \n3. Sair",
                 "Menu",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);

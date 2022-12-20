@@ -1,6 +1,6 @@
 package com.example.destino;
 
-public class Endereco {
+public class Endereco{
     private String bairro;
     private String rua;
     private int numero;

@@ -1,6 +1,6 @@
 package com.example.destino;
 
-public class Usuario {
+public class Usuario{
     private String Nome;
     private String e_mail;
     private String senha;
