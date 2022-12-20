@@ -1,6 +1,6 @@
 package com.example.destino;
 
-public class Funcionario {
+public class Funcionario{
     private String nome;
     private String CPF;
     private String senha;
@@ -14,12 +14,19 @@ public class Funcionario {
         
     }
 
+    public String getCPF() {
+        return CPF;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public String getId(){
         return id;
     }
 
-    public String getsenha(){
-        return this.senha;
+    public String getSenha() {
+        return senha;
     }
-
 }

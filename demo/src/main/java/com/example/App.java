@@ -52,7 +52,7 @@ public class App
 
 
             for(Funcionario funcionario: funcionarios){
-                if(entrar.equals(funcionario.getId()) && senha.equals(funcionario.getsenha())){
+                if(entrar.equals(funcionario.getId()) && senha.equals(funcionario.getSenha())){
 
                 }
             }

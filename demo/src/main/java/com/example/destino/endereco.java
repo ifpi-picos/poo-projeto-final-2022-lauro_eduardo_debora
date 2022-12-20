@@ -13,4 +13,20 @@ public class Endereco{
         this.rua = rua;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public int getCep() {
+        return cep;
+    }
+
 }
