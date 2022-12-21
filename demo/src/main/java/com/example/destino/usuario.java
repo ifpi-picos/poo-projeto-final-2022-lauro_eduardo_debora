@@ -12,7 +12,7 @@ public class Usuario{
     private Boolean confirma;
     
     
-    public Usuario(String Nome_p, String email, String Senha, String Cpf, Date dataNascimento,Endereco endereco){
+    public Usuario(String Nome_p, String email, String Senha, String Cpf, /*Date dataNascimento,*/Endereco endereco){
         this.cpf = Cpf;
         this.Nome = Nome_p;
         this.senha = Senha;

@@ -6,9 +6,9 @@ public class Livro{
     private String titulo;
     private String autor;
     private Date dataPublicacao;
-    private int numCopias;
+    private int numCopias = 0;
 
-    public Livro(String titulo, String autor, Date dataPublicacao, int numCopias){
+    public Livro(String titulo, String autor, /*Date dataPublicacao,*/ int numCopias){
         this.titulo = titulo;
         this.autor = autor;
         this.dataPublicacao = dataPublicacao;
@@ -29,6 +29,22 @@ public class Livro{
     
     public int getNumCopias() {
         return numCopias;
+    }
+
+    public void setNumCopias(int num){
+        this.numCopias = num;
+    }
+
+    public void setTitulo(String nome){
+        this.titulo = nome;
+    }
+
+    public void setAutor(String autor){
+        this.autor = autor;
+    }
+
+    public void setData(Date data){
+        this.dataPublicacao = data;
     }
     
 }
