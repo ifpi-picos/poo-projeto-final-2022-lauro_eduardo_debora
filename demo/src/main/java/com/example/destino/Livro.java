@@ -7,12 +7,14 @@ public class Livro{
     private String autor;
     private Date dataPublicacao;
     private int numCopias = 0;
+    private Areadeconhecimento detalhe;
 
-    public Livro(String titulo, String autor, /*Date dataPublicacao,*/ int numCopias){
+    public Livro(String titulo, String autor, /*Date dataPublicacao,*/ int numCopias, Areadeconhecimento informacao){
         this.titulo = titulo;
         this.autor = autor;
-        this.dataPublicacao = dataPublicacao;
+        //this.dataPublicacao = dataPublicacao;
         this.numCopias = numCopias;
+        this.detalhe = informacao;
     }
 
     public String getTitulo(){

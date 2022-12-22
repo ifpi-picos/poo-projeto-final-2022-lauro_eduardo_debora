@@ -69,9 +69,10 @@ public class App
                     menu.add(4);
                     menu.add(5);
                     menu.add(6);
+                    menu.add(7);
 
                     int menuSelecionado = 1;
-                    while (menu.get(menuSelecionado) != 6) {
+                    while (menu.get(menuSelecionado) != 7) {
                         menuSelecionado = Menu_funcionario(menu);
                         if (menu.get(menuSelecionado) == 1) {
                             funcionario.adicionar_usuario(usuarios);
@@ -82,9 +83,10 @@ public class App
                         }else if (menu.get(menuSelecionado) == 4) {
                             funcionario.remover_livro(livros);
                         }else if (menu.get(menuSelecionado) == 5) {
-                            funcionario.listar_livros();
+                            funcionario.listar_livros(livros);
+                        }else if (menu.get(menuSelecionado) == 6) {
+                            funcionario.emprestimo(usuarios, livros);     
                         }
-
         }
                 }
             }

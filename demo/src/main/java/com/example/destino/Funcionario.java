@@ -1,7 +1,9 @@
 package com.example.destino;
 
+//import java.time.LocalDateTime;
 //import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -68,13 +70,17 @@ public class Funcionario{
         //String Data_l = JOptionPane.showInputDialog("Data de publicação: ");
         String quant_l = JOptionPane.showInputDialog("Quantos livros estão sendo adicionados? ");
         Integer quant = Integer.parseInt(quant_l);
-        Livro livro = new Livro(Nome_l,autor_nome, quant);
+        String titulo = JOptionPane.showInputDialog("Título da área do livro: ");
+        String descricao = JOptionPane.showInputDialog("Descrição do tipo do livro: ");
+        Areadeconhecimento infor = new Areadeconhecimento(titulo,descricao);
+        Livro livro = new Livro(Nome_l,autor_nome, quant, infor);
         livros.add(livro);
-        liv.add(Nome_l);
+        liv.add(Nome_l +" O autor é: "+autor_nome);
 
     }
 
     public void remover_livro(List<Livro> livros){
+        //Estamos removendo só um livro
         String Nome = JOptionPane.showInputDialog("Nome do livro: ");
         String autornome = JOptionPane.showInputDialog("Nome do autor do livro: ");
         for (Livro livro : livros){
@@ -96,18 +102,51 @@ public class Funcionario{
             if(Nome.equals(livro.getTitulo()) && autornome.equals(livro.getAutor())){
                 livro.setTitulo(Nome);
                 livro.setAutor(autornome);
-                //livro.setData(null);
+                //livro.setData(null);""
             }
         }
     }
 
-    public void listar_livros(){
-        Object[] livrosArray = liv.toArray();
+    public void listar_livros(List<Livro> livros){
+        String nomes = "";
+		for(String nome : liv){
+			nomes += nome+"\n";
+		}
+		JOptionPane.showMessageDialog(null, nomes);
+    }
+
+    public void emprestimo(List<Usuario> usuarios, List<Livro> livros){
+        String cpf = JOptionPane.showInputDialog("CPF do usuário: ");
+        String senha = JOptionPane.showInputDialog("Senha do usuário: ");
+        for(Usuario uso : usuarios){
+            if(cpf.equals(uso.getCpf()) && senha.equals(uso.getSenha())){
+                String nome_l = JOptionPane.showInputDialog("Nome do livro: ");
+                String autor_l = JOptionPane.showInputDialog("Nome do autor do livro: ");
+                for(Livro livro : livros){
+                    if(nome_l.equals(livro.getTitulo()) && autor_l.equals(livro.getAutor())){
+                        if(livro.getNumCopias() > 0){
+                            //LocalDateTime now = LocalDateTime.now();
+                            String valor = JOptionPane.showInputDialog("Qual o valor do empréstimo? ");
+                            String tempo_com_livro = JOptionPane.showInputDialog("Quanto tempo vai ficar com o livro? ");
+                            Float valor_e = Float.parseFloat(valor);
+                            Integer tempo = Integer.parseInt(tempo_com_livro);
+                            Emprestimo empres = new Emprestimo(/*now,*/livro,uso,valor_e,tempo);
+                            uso.setEmprestimo(empres);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Estamos sem esse livro no estoque!");
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+/* Object[] livrosArray = liv.toArray();
         int escolhido = JOptionPane.showOptionDialog(null,
                 "Livros:",
                 "Menu",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 livrosArray, null);
-        System.out.println(escolhido);
-    }
-}
+        System.out.println(escolhido); */

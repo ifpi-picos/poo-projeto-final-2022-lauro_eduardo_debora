@@ -7,10 +7,10 @@ public class Emprestimo{
     private Livro livroEmp;
     private Usuario usuarioEmp;
     private float valorEmp;
-    private float tempoEmp;
+    private int tempoEmp;
 
-    public Emprestimo(Date dataEmp, Livro livroEmp, Usuario usuarioEmp, float valorEmp, float tempoEmp){
-        this.dataEmp = dataEmp;
+    public Emprestimo(/*Date dataEmp,*/ Livro livroEmp, Usuario usuarioEmp, float valorEmp, int tempoEmp){
+        //this.dataEmp = dataEmp;
         this.livroEmp = livroEmp;
         this.usuarioEmp = usuarioEmp;
         this.valorEmp = valorEmp;
