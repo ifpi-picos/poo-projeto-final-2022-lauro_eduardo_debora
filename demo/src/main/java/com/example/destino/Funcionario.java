@@ -72,7 +72,7 @@ public class Funcionario{
         Integer quant = Integer.parseInt(quant_l);
         String titulo = JOptionPane.showInputDialog("Título da área do livro: ");
         String descricao = JOptionPane.showInputDialog("Descrição do tipo do livro: ");
-        Areadeconhecimento infor = new Areadeconhecimento(titulo,descricao);
+        AreaConhecimento infor = new AreaConhecimento(titulo,descricao);
         Livro livro = new Livro(Nome_l,autor_nome, quant, infor);
         livros.add(livro);
         liv.add(Nome_l +" O autor é: "+autor_nome);

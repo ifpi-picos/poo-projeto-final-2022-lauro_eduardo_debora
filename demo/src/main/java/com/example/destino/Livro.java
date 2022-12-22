@@ -7,9 +7,9 @@ public class Livro{
     private String autor;
     private Date dataPublicacao;
     private int numCopias = 0;
-    private Areadeconhecimento detalhe;
+    private AreaConhecimento detalhe;
 
-    public Livro(String titulo, String autor, /*Date dataPublicacao,*/ int numCopias, Areadeconhecimento informacao){
+    public Livro(String titulo, String autor, /*Date dataPublicacao,*/ int numCopias, AreaConhecimento informacao){
         this.titulo = titulo;
         this.autor = autor;
         //this.dataPublicacao = dataPublicacao;

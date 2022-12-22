@@ -1,10 +1,10 @@
 package com.example.destino;
 
-public class Areadeconhecimento{
+public class AreaConhecimento{
     private String titulo;
     private String descricao;
     
-    public Areadeconhecimento(String titu, String descri){
+    public AreaConhecimento(String titu, String descri){
         this.titulo = titu;
         this.descricao = descri;
     }

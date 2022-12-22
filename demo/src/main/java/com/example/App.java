@@ -35,6 +35,7 @@ public class App
         }
     }
 
+    // Menu inicial
     public static int verMenu(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
@@ -45,7 +46,7 @@ public class App
         return opcaoSelecionad;
     }
 
-    public static int Menu_funcionario(List<Integer> menu) {
+    public static int menuFuncionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
                 "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livros \n5. Listar livros \n6. Emprestimo \n 7. Sair",
@@ -55,6 +56,7 @@ public class App
         return opcaoSelecionad;
     }
 
+    // Login funcionário
     public static void funcionario(){
         if(usuarios.size() > 0 || funcionarios.size() > 0){
             String entrar = JOptionPane.showInputDialog("Seu id: ");
@@ -73,7 +75,7 @@ public class App
 
                     int menuSelecionado = 1;
                     while (menu.get(menuSelecionado) != 7) {
-                        menuSelecionado = Menu_funcionario(menu);
+                        menuSelecionado = menuFuncionario(menu);
                         if (menu.get(menuSelecionado) == 1) {
                             funcionario.adicionar_usuario(usuarios);
                         } else if (menu.get(menuSelecionado) == 2) {
@@ -94,8 +96,9 @@ public class App
             JOptionPane.showMessageDialog(null, "Nenhum funcionário cadastrado!");
         }
 
-}
+    }
 
+    // Login admin
     public static void admin(){
         String pergunta = JOptionPane.showInputDialog("Código da empresa");
         int convertor_pergunta = Integer.parseInt(pergunta);
@@ -107,7 +110,7 @@ public class App
 
             int menuSelecionado = 1;
             while (menu_interativo.get(menuSelecionado) != 3) {
-                menuSelecionado = Menu_admin(menu_interativo);
+                menuSelecionado = menuAdmin(menu_interativo);
                 if (menu_interativo.get(menuSelecionado) == 1) {
                     Random geradorConta = new Random();
 
@@ -135,7 +138,7 @@ public class App
         }
     }
 
-    public static int Menu_admin(List<Integer> menu) {
+    public static int menuAdmin(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
                 "1. Cadastrar funcionário \n2. Gerir \n3. Sair",
