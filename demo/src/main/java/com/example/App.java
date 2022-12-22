@@ -49,7 +49,7 @@ public class App
     public static int menuFuncionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livros \n5. Listar livros \n6. Emprestimo \n 7. Sair",
+                "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livros \n5. Listar livros \n6. Emprestimo \n7. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -58,7 +58,7 @@ public class App
 
     // Login funcionário
     public static void funcionario(){
-        if(usuarios.size() > 0 || funcionarios.size() > 0){
+        if(funcionarios.size() > 0){
             String entrar = JOptionPane.showInputDialog("Seu id: ");
             String senha = JOptionPane.showInputDialog("Senha: ");
 

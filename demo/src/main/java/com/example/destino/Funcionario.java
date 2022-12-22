@@ -13,7 +13,9 @@ public class Funcionario{
     private String CPF;
     private String senha;
     private String id;
+
     static List<String> liv = new ArrayList<>();
+    // static List<Livro> livrosList = new ArrayList<>();
 
     public Funcionario(String nome, String CPF, String senha, String id){
         this.nome = nome;
@@ -54,7 +56,7 @@ public class Funcionario{
         String email_p = JOptionPane.showInputDialog("Seu e-mail: ");
         String bairro_p = JOptionPane.showInputDialog("Seu bairro: ");
         String rua_p = JOptionPane.showInputDialog("Sua rua: ");
-        String numero_p = JOptionPane.showInputDialog("Número da rua: ");
+        String numero_p = JOptionPane.showInputDialog("Número da casa: ");
         String cep_p = JOptionPane.showInputDialog("Seu CEP: ");
 
         int convertor_n = Integer.parseInt(cep_p);
@@ -75,8 +77,9 @@ public class Funcionario{
         AreaConhecimento infor = new AreaConhecimento(titulo,descricao);
         Livro livro = new Livro(Nome_l,autor_nome, quant, infor);
         livros.add(livro);
-        liv.add(Nome_l +" O autor é: "+autor_nome);
-
+        // livrosList.add(livro);
+        liv.add("Título: " + Nome_l + ", Autor: "+ autor_nome + ", Cópias: " + livro.getNumCopias() + ".");
+        System.out.println("Cópias: " + livro.getNumCopias());
     }
 
     public void remover_livro(List<Livro> livros){
@@ -132,6 +135,7 @@ public class Funcionario{
                             Integer tempo = Integer.parseInt(tempo_com_livro);
                             Emprestimo empres = new Emprestimo(/*now,*/livro,uso,valor_e,tempo);
                             uso.setEmprestimo(empres);
+                            livro.setNumCopias(livro.getNumCopias() - 1);
                         }else{
                             JOptionPane.showMessageDialog(null, "Estamos sem esse livro no estoque!");
                         }
