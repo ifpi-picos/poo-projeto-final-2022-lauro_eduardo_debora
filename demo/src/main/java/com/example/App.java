@@ -48,7 +48,7 @@ public class App
     public static int Menu_funcionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livros \n5. Listar livros \n6. Sair",
+                "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livros \n5. Listar livros \n6. Emprestimo \n 7. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
