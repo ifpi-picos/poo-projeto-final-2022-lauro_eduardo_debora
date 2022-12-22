@@ -15,7 +15,7 @@ public class Funcionario{
     private String id;
 
     static List<String> liv = new ArrayList<>();
-    // static List<Livro> livrosList = new ArrayList<>();
+    static List<Livro> livrosList = new ArrayList<>();
 
     public Funcionario(String nome, String CPF, String senha, String id){
         this.nome = nome;
@@ -77,9 +77,7 @@ public class Funcionario{
         AreaConhecimento infor = new AreaConhecimento(titulo,descricao);
         Livro livro = new Livro(Nome_l,autor_nome, quant, infor);
         livros.add(livro);
-        // livrosList.add(livro);
-        liv.add("Título: " + Nome_l + ", Autor: "+ autor_nome + ", Cópias: " + livro.getNumCopias() + ".");
-        System.out.println("Cópias: " + livro.getNumCopias());
+        livrosList.add(livro);
     }
 
     public void remover_livro(List<Livro> livros){
@@ -111,9 +109,15 @@ public class Funcionario{
     }
 
     public void listar_livros(List<Livro> livros){
+        
+        liv.clear();
+        for(Livro livro : livrosList){
+            liv.add("Título: " + livro.getTitulo() + ", Autor: "+ livro.getAutor() + ", Cópias: " + livro.getNumCopias() + ".");
+        }
+
         String nomes = "";
 		for(String nome : liv){
-			nomes += nome+"\n";
+			nomes += nome + "\n";
 		}
 		JOptionPane.showMessageDialog(null, nomes);
     }
