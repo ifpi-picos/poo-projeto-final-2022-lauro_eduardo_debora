@@ -15,7 +15,7 @@ public class Funcionario{
     private String id;
 
     static List<String> liv = new ArrayList<>();
-    static List<Livro> livrosList = new ArrayList<>();
+    // static List<Livro> livrosList = new ArrayList<>();
 
     public Funcionario(String nome, String CPF, String senha, String id){
         this.nome = nome;
@@ -77,16 +77,16 @@ public class Funcionario{
         AreaConhecimento infor = new AreaConhecimento(titulo,descricao);
         Livro livro = new Livro(Nome_l,autor_nome, quant, infor);
         livros.add(livro);
-        livrosList.add(livro);
+        // livrosList.add(livro);
     }
 
+    // Removendo livro do sistema
     public void removerLivro(List<Livro> livros){
-        //Estamos removendo só um livro
         String Nome = JOptionPane.showInputDialog("Nome do livro: ");
         String autornome = JOptionPane.showInputDialog("Nome do autor do livro: ");
         for (Livro livro : livros){
             if(Nome.equals(livro.getTitulo()) && autornome.equals(livro.getAutor())){
-                livrosList.remove(livro);
+                livros.remove(livro);
                 JOptionPane.showMessageDialog(null, "Livro removido com sucesso.");
             }
         }
@@ -108,7 +108,7 @@ public class Funcionario{
     public void listarLivros(List<Livro> livros){
         
         liv.clear();
-        for(Livro livro : livrosList){
+        for(Livro livro : livros){
             liv.add("Título: " + livro.getTitulo() + ", Autor: "+ livro.getAutor() + ", Cópias: " + livro.getNumCopias() + ".");
         }
 
@@ -120,34 +120,59 @@ public class Funcionario{
     }
 
     public void emprestimo(List<Usuario> usuarios, List<Livro> livros){
+
+        List<String> users = new ArrayList<>();
+        List<String> books = new ArrayList<>(); 
+
+        for(Usuario user : usuarios){
+            users.add(user.getCpf() + user.getSenha());
+        }
+        for(Livro book : livros){
+            books.add(book.getTitulo() + book.getAutor());
+        }
+
+
         String cpf = JOptionPane.showInputDialog("CPF do usuário: ");
         String senha = JOptionPane.showInputDialog("Senha do usuário: ");
-        for(Usuario uso : usuarios){
-            if(cpf.equals(uso.getCpf()) && senha.equals(uso.getSenha())){
-                String nome_l = JOptionPane.showInputDialog("Nome do livro: ");
-                String autor_l = JOptionPane.showInputDialog("Nome do autor do livro: ");
-                for(Livro livro : livros){
-                    if(nome_l.equals(livro.getTitulo()) && autor_l.equals(livro.getAutor())){
-                        if(livro.getNumCopias() > 0){
-                            //LocalDateTime now = LocalDateTime.now();
-                            String valor = JOptionPane.showInputDialog("Qual o valor do empréstimo? ");
-                            String tempo_com_livro = JOptionPane.showInputDialog("Quanto tempo vai ficar com o livro? ");
-                            Float valor_e = Float.parseFloat(valor);
-                            Integer tempo = Integer.parseInt(tempo_com_livro);
-                            Emprestimo empres = new Emprestimo(/*now,*/livro,uso,valor_e,tempo);
-                            uso.setEmprestimo(empres);
-                            livro.setNumCopias(livro.getNumCopias() - 1);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Livro sem estoque!");
+
+        if(users.contains(cpf+senha)){
+
+            for(Usuario uso : usuarios){
+
+                if(cpf.equals(uso.getCpf()) && senha.equals(uso.getSenha())){
+                    String nome_l = JOptionPane.showInputDialog("Nome do livro: ");
+                    String autor_l = JOptionPane.showInputDialog("Nome do autor do livro: ");
+
+                    if(books.contains(nome_l+autor_l)){
+
+                        for(Livro livro : livros){
+
+                            if(nome_l.equals(livro.getTitulo()) && autor_l.equals(livro.getAutor())){
+
+                                if(livro.getNumCopias() > 0){
+                                    //LocalDateTime now = LocalDateTime.now();
+                                    String valor = JOptionPane.showInputDialog("Qual o valor do empréstimo? ");
+                                    String tempo_com_livro = JOptionPane.showInputDialog("Quanto tempo vai ficar com o livro? ");
+                                    Float valor_e = Float.parseFloat(valor);
+                                    Integer tempo = Integer.parseInt(tempo_com_livro);
+                                    Emprestimo empres = new Emprestimo(/*now,*/livro,uso,valor_e,tempo);
+                                    uso.setEmprestimo(empres);
+                                    livro.setNumCopias(livro.getNumCopias() - 1);
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "Livro sem estoque!");
+                                }
+                            }
                         }
+
                     }else{
                         JOptionPane.showMessageDialog(null, "Livro não cadastrado!");
                     }
-                }
+                    
 
-            }else{
-                JOptionPane.showMessageDialog(null, "CPF ou senha incorretos!");
+                }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
         }
     }
 }
