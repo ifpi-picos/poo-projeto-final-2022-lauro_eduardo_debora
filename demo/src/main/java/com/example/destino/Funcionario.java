@@ -41,14 +41,14 @@ public class Funcionario{
         return senha;
     }
 
-    public void adicionar_usuario(List<Usuario> usuarios){
+    public void adicionarUsuario(List<Usuario> usuarios){
         String Nome_p = JOptionPane.showInputDialog("Seu nome: ");
         String CPF_p = JOptionPane.showInputDialog("Seu CPF: ");
         for (Usuario usuario : usuarios) {
             // Autenticando o cliente que será acessado
             if (CPF_p.equals(usuario.getCpf())) {
                 JOptionPane.showMessageDialog(null, "Esse CPF já está cadastrado!");
-                adicionar_usuario(usuarios);
+                adicionarUsuario(usuarios);
                 }
         }
 
@@ -66,7 +66,7 @@ public class Funcionario{
         usuarios.add(Usuario);
     }
 
-    public void adicionar_livro(List<Livro> livros){
+    public void adicionarLivro(List<Livro> livros){
         String Nome_l = JOptionPane.showInputDialog("Nome do livro: ");
         String autor_nome = JOptionPane.showInputDialog("Nome do autor do livro: ");
         //String Data_l = JOptionPane.showInputDialog("Data de publicação: ");
@@ -80,22 +80,19 @@ public class Funcionario{
         livrosList.add(livro);
     }
 
-    public void remover_livro(List<Livro> livros){
+    public void removerLivro(List<Livro> livros){
         //Estamos removendo só um livro
         String Nome = JOptionPane.showInputDialog("Nome do livro: ");
         String autornome = JOptionPane.showInputDialog("Nome do autor do livro: ");
         for (Livro livro : livros){
             if(Nome.equals(livro.getTitulo()) && autornome.equals(livro.getAutor())){
-                if(livro.getNumCopias() == 0){
-                    JOptionPane.showMessageDialog(null, "Esse livro está sem estoque");
-                }else{
-                    livro.setNumCopias(livro.getNumCopias() - 1);
-                }
+                livrosList.remove(livro);
+                JOptionPane.showMessageDialog(null, "Livro removido com sucesso.");
             }
         }
     }
 
-    public void alterar_livro(List<Livro> livros){
+    public void alterarLivro(List<Livro> livros){
         String Nome = JOptionPane.showInputDialog("Nome do livro: ");
         String autornome = JOptionPane.showInputDialog("Nome do autor do livro: ");
        // String Data = JOptionPane.showInputDialog("Data de publicação: ");
@@ -108,7 +105,7 @@ public class Funcionario{
         }
     }
 
-    public void listar_livros(List<Livro> livros){
+    public void listarLivros(List<Livro> livros){
         
         liv.clear();
         for(Livro livro : livrosList){

@@ -49,7 +49,7 @@ public class App
     public static int menuFuncionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livros \n5. Listar livros \n6. Emprestimo \n7. Sair",
+                "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livro \n5. Listar livros \n6. Emprestimo \n7. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -77,15 +77,15 @@ public class App
                     while (menu.get(menuSelecionado) != 7) {
                         menuSelecionado = menuFuncionario(menu);
                         if (menu.get(menuSelecionado) == 1) {
-                            funcionario.adicionar_usuario(usuarios);
+                            funcionario.adicionarUsuario(usuarios);
                         } else if (menu.get(menuSelecionado) == 2) {
-                            funcionario.adicionar_livro(livros);
+                            funcionario.adicionarLivro(livros);
                         }else if (menu.get(menuSelecionado) == 3) {
-                            funcionario.alterar_livro(livros);
+                            funcionario.alterarLivro(livros);
                         }else if (menu.get(menuSelecionado) == 4) {
-                            funcionario.remover_livro(livros);
+                            funcionario.removerLivro(livros);
                         }else if (menu.get(menuSelecionado) == 5) {
-                            funcionario.listar_livros(livros);
+                            funcionario.listarLivros(livros);
                         }else if (menu.get(menuSelecionado) == 6) {
                             funcionario.emprestimo(usuarios, livros);     
                         }
