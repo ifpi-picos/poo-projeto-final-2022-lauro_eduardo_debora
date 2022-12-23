@@ -3,7 +3,7 @@ package com.example.destino;
 //import java.time.LocalDateTime;
 //import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Comparator;
+// import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -87,7 +87,7 @@ public class Funcionario{
         for (Livro livro : livros){
             if(Nome.equals(livro.getTitulo()) && autornome.equals(livro.getAutor())){
                 if(livro.getNumCopias() == 0){
-                    JOptionPane.showMessageDialog(null, "Esse livro não está tendo no estoque");
+                    JOptionPane.showMessageDialog(null, "Esse livro está sem estoque");
                 }else{
                     livro.setNumCopias(livro.getNumCopias() - 1);
                 }
@@ -141,11 +141,15 @@ public class Funcionario{
                             uso.setEmprestimo(empres);
                             livro.setNumCopias(livro.getNumCopias() - 1);
                         }else{
-                            JOptionPane.showMessageDialog(null, "Estamos sem esse livro no estoque!");
+                            JOptionPane.showMessageDialog(null, "Livro sem estoque!");
                         }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Livro não cadastrado!");
                     }
                 }
 
+            }else{
+                JOptionPane.showMessageDialog(null, "CPF ou senha incorretos!");
             }
         }
     }
