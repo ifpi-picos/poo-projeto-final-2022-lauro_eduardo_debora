@@ -1,14 +1,20 @@
 package com.example;
 
+
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import com.example.dao.UsuarioDao;
 import com.example.destino.Funcionario;
 import com.example.destino.Livro;
 import com.example.destino.Usuario;
+import com.example.visao.UsuarioForm;
 
 public class App 
 {
@@ -16,8 +22,14 @@ public class App
     static List<Usuario> usuarios = new ArrayList<>();
     static List<Livro> livros = new ArrayList<>();
 
-    public static void main( String[] args )
+    public static void main( String[] args ) throws ParseException
     {
+
+        /* SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataNascimento = formatter.parse("12/02/2020");
+
+        new UsuarioForm().cadastrarUsuario("4444", "sdffd", "dfsdfdsfd@gmail.com", "fgdfg4545", dataNascimento, "867868"); */
+
         List<Integer> menu = new ArrayList<>();
         menu.add(1);
         menu.add(2);
@@ -57,7 +69,7 @@ public class App
     }
 
     // Login funcionário
-    public static void funcionario(){
+    public static void funcionario() throws ParseException{
         if(funcionarios.size() > 0){
             String entrar = JOptionPane.showInputDialog("Seu id: ");
             String senha = JOptionPane.showInputDialog("Senha: ");

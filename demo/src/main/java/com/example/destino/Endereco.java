@@ -1,16 +1,22 @@
 package com.example.destino;
 
 public class Endereco{
+    private String idEndereco;
     private String bairro;
     private String rua;
     private int numero;
-    private int cep;
+    private long cep;
 
-    public Endereco(String bairro, String rua, int numero, int cep){
+    public Endereco(String idEndereco, String bairro, String rua, int numero, long cep){
+        this.idEndereco = idEndereco;
         this.bairro = bairro;
-        this.cep = cep;
-        this.numero = numero;
         this.rua = rua;
+        this.numero = numero;
+        this.cep = cep;  
+    }
+
+    public String getIdEndereco() {
+        return idEndereco;
     }
 
     public String getBairro() {
@@ -25,7 +31,7 @@ public class Endereco{
         return numero;
     }
 
-    public int getCep() {
+    public long getCep() {
         return cep;
     }
 

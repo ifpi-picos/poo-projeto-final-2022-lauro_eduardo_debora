@@ -1,12 +1,18 @@
 package com.example.destino;
 
 //import java.time.LocalDateTime;
-//import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 // import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
+
+import com.example.visao.EnderecoForm;
+import com.example.visao.UsuarioForm;
 
 public class Funcionario{
     private String nome;
@@ -41,9 +47,13 @@ public class Funcionario{
         return senha;
     }
 
-    public void adicionarUsuario(List<Usuario> usuarios){
+    public void adicionarUsuario(List<Usuario> usuarios) throws ParseException{
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
         String Nome_p = JOptionPane.showInputDialog("Seu nome: ");
         String CPF_p = JOptionPane.showInputDialog("Seu CPF: ");
+        String dataNascimento_p = JOptionPane.showInputDialog("Data de Nascimento: ");
         for (Usuario usuario : usuarios) {
             // Autenticando o cliente que será acessado
             if (CPF_p.equals(usuario.getCpf())) {
@@ -59,11 +69,24 @@ public class Funcionario{
         String numero_p = JOptionPane.showInputDialog("Número da casa: ");
         String cep_p = JOptionPane.showInputDialog("Seu CEP: ");
 
-        int convertor_n = Integer.parseInt(cep_p);
-        int convertor_nu = Integer.parseInt(numero_p);
-        Endereco endereco = new Endereco(bairro_p,rua_p,convertor_nu,convertor_n);
-        Usuario Usuario = new Usuario(Nome_p, email_p, senha_p, CPF_p, endereco);
-        usuarios.add(Usuario);
+        long convertor_cep = Long.parseLong(cep_p);
+        int convertor_num = Integer.parseInt(numero_p);
+        Date dataNascimento = formatter.parse(dataNascimento_p);
+
+        Random geradorConta = new Random();
+        int num1 = geradorConta.nextInt(9);
+        int num2 = geradorConta.nextInt(9);
+        int num3 = geradorConta.nextInt(9);
+        int num4 = geradorConta.nextInt(9);
+
+        String id_endere = "" + num1 + num2 + num3 + num4;
+
+        new EnderecoForm().cadastrarEndereco(id_endere, bairro_p, rua_p, convertor_num, convertor_cep);
+        new UsuarioForm().cadastrarUsuario(CPF_p, Nome_p, email_p, senha_p, dataNascimento, id_endere);
+
+        // Endereco endereco = new Endereco(bairro_p,rua_p,convertor_nu,convertor_n);
+        // Usuario Usuario = new Usuario(Nome_p, email_p, senha_p, CPF_p, endereco);
+        // usuarios.add(Usuario);
     }
 
     public void adicionarLivro(List<Livro> livros){

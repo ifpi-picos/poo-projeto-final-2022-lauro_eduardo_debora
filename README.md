@@ -5,6 +5,3 @@
 - Cadastrar, alterar, listar e remover livros.
 - Cadastrar, alterar, listar e remover usuários.
 - Empréstimos de livros.
-
-### Funcionalidades implementadas:
-- 
