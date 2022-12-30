@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.destino.Usuario;
+import com.example.destino.Endereco;
 
 public class UsuarioDao {
     

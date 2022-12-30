@@ -2,6 +2,9 @@ package com.example;
 
 
 import java.util.Date;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,11 +27,6 @@ public class App
 
     public static void main( String[] args ) throws ParseException
     {
-
-        /* SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataNascimento = formatter.parse("12/02/2020");
-
-        new UsuarioForm().cadastrarUsuario("4444", "sdffd", "dfsdfdsfd@gmail.com", "fgdfg4545", dataNascimento, "867868"); */
 
         List<Integer> menu = new ArrayList<>();
         menu.add(1);

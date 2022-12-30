@@ -15,6 +15,10 @@ public class Endereco{
         this.cep = cep;  
     }
 
+    public Endereco(String id){
+        this.idEndereco = id;
+    }
+
     public String getIdEndereco() {
         return idEndereco;
     }

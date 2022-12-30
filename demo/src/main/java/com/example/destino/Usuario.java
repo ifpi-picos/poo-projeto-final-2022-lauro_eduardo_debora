@@ -14,22 +14,22 @@ public class Usuario{
     private Emprestimo emprestimo;
     
     
-    public Usuario(String Nome_p, String email, String Senha, String Cpf, /*Date dataNascimento,*/Endereco endereco){
+    /* public Usuario(String Nome_p, String email, String Senha, String Cpf, Endereco endereco){
         this.cpf = Cpf;
         this.nome = Nome_p;
         this.senha = Senha;
         this.email = email;
-        //this.dataNascimento = dataNascimento;
-        //this.endereco = endereco;
-    }
+        // this.dataNascimento = dataNascimento;
+        // this.endereco = endereco;
+    } */
 
-    public Usuario(String cpf, String nome, String email, String senha, Date datanascimento, String idEndereco){
+    public Usuario(String cpf, String nome, String email, String senha, Date datanascimento, String endereco){
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.dataNascimento = datanascimento;
-        this.idEndereco = idEndereco;
+        this.idEndereco = endereco;
     }
 
     public String getCpf(){
