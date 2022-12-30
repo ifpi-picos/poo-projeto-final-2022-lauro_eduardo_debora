@@ -59,7 +59,7 @@ public class App
     public static int menuFuncionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar usuário \n2. Adicionar livro \n3. Alterar livro \n4. Remover livro \n5. Listar livros \n6. Emprestimo \n7. Sair",
+                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Adicionar livro \n5. Alterar livro \n6. Remover livro \n7. Listar livros \n8. Emprestimo \n9. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -82,21 +82,26 @@ public class App
                     menu.add(5);
                     menu.add(6);
                     menu.add(7);
+                    menu.add(8);
 
                     int menuSelecionado = 1;
-                    while (menu.get(menuSelecionado) != 7) {
+                    while (menu.get(menuSelecionado) != 9) {
                         menuSelecionado = menuFuncionario(menu);
                         if (menu.get(menuSelecionado) == 1) {
                             funcionario.adicionarUsuario(usuarios);
                         } else if (menu.get(menuSelecionado) == 2) {
-                            funcionario.adicionarLivro(livros);
+                            funcionario.alterarUsuario();
                         }else if (menu.get(menuSelecionado) == 3) {
-                            funcionario.alterarLivro(livros);
+                            funcionario.removerUsuario();
                         }else if (menu.get(menuSelecionado) == 4) {
-                            funcionario.removerLivro(livros);
+                            funcionario.adicionarLivro(livros);
                         }else if (menu.get(menuSelecionado) == 5) {
-                            funcionario.listarLivros(livros);
+                            funcionario.alterarLivro(livros);
                         }else if (menu.get(menuSelecionado) == 6) {
+                            funcionario.removerLivro(livros);
+                        }else if (menu.get(menuSelecionado) == 7) {
+                            funcionario.listarLivros(livros);
+                        }else if (menu.get(menuSelecionado) == 8) {
                             funcionario.emprestimo(usuarios, livros);     
                         }
         }

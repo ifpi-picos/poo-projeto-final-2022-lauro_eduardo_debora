@@ -2,6 +2,14 @@
 > Sistema desenvolvido para gerenciar a biblioteca ifLib
 
 ### Métodos a serem implementados:
-- Cadastrar, alterar, listar e remover livros.
-- Cadastrar, alterar, listar e remover usuários.
-- Empréstimos de livros.
+- Cadastrar funcionários
+- Altera usuário
+- Remover usuário
+- Adicionar livro
+- Altera livro
+- Remover livro
+- Listar livros
+- Realizar empréstimo
+
+### Métodos implementados 
+- Adicionar usuário

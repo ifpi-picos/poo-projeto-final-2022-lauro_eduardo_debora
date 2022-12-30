@@ -89,6 +89,23 @@ public class Funcionario{
         // usuarios.add(Usuario);
     }
 
+    public void alterarUsuario(){
+
+        String cpf = JOptionPane.showInputDialog("Digite o CPF do usuário: ");
+
+        boolean userExist = new UsuarioForm().encontrarUsuario(cpf);
+
+        if(userExist){
+            System.out.println("Existe!");
+        }else{
+            System.out.println("Não existe!");
+        }
+
+    }
+    public void removerUsuario(){
+
+    }
+
     public void adicionarLivro(List<Livro> livros){
         String Nome_l = JOptionPane.showInputDialog("Nome do livro: ");
         String autor_nome = JOptionPane.showInputDialog("Nome do autor do livro: ");

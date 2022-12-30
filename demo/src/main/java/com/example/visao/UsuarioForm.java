@@ -13,6 +13,10 @@ public class UsuarioForm {
         new UsuarioDao().adicionarUsuario(usuario);
     }
 
+    public boolean encontrarUsuario(String cpf){
+        return new UsuarioDao().buscarUsuario(cpf);
+    }
+
     public void listarUsuarios(){
         List<Usuario> usuariosCadastrados = new UsuarioDao().buscarUsuarios();
         
