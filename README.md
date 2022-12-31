@@ -3,10 +3,9 @@
 
 ### Métodos a serem implementados:
 - Cadastrar funcionários
-- Altera usuário
 - Remover usuário
 - Adicionar livro
-- Altera livro
+- Alterar livro
 - Remover livro
 - Listar livros
 - Realizar empréstimo
