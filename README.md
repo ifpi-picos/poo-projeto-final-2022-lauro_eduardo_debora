@@ -13,3 +13,4 @@
 
 ### Métodos implementados 
 - Adicionar usuário
+- Alterar usuário
