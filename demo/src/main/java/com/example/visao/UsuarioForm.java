@@ -17,6 +17,22 @@ public class UsuarioForm {
         return new UsuarioDao().buscarUsuario(cpf);
     }
 
+    public void alterarNome(String nome, String cpf){
+        new UsuarioDao().alterarNomeUsuario(nome, cpf);
+    }
+
+    public void alterarEmail(String email, String cpf){
+        new UsuarioDao().alterarEmailUsuario(email, cpf);
+    }
+
+    public void alterarSenha(String senha, String cpf){
+        new UsuarioDao().alterarSenhaUsuario(senha, cpf);
+    }
+
+    public void alterarDataUsuario(String data, String cpf){
+        new UsuarioDao().alterarDataUsuario(data, cpf);
+    }
+
     public void listarUsuarios(){
         List<Usuario> usuariosCadastrados = new UsuarioDao().buscarUsuarios();
         

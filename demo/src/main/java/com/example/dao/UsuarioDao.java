@@ -28,14 +28,28 @@ public class UsuarioDao {
     }
 
     public boolean buscarUsuario(String cpf){
-        try {
+
+        String sql = "select cpf from usuarios where usuarios.cpf = '"+cpf+"' ";
+
+        System.out.println("CPF: " + cpf);
+
+        try { 
             Statement stm = conexao.createStatement();
-            String sql = "select * usuarios where usuarios.cpf = '"+cpf+" ";
-            stm.executeUpdate(sql);
-            return true;
-            
+            ResultSet result = stm.executeQuery(sql);
+
+            // System.out.println("result: " + result);
+
+            if(result.next()){
+                // System.out.println("Entrou no true");
+                return true;
+            }else{
+                // System.out.println("Entrou no false");
+                return false;
+            } 
+
         } catch (Exception e) {
             e.printStackTrace();
+
             return false;
         }
     }
@@ -44,6 +58,46 @@ public class UsuarioDao {
         try {
             Statement stm = conexao.createStatement();
             String sql = "update usuarios set nome = '"+nome+"', email = '"+email+"', senha = '"+senha+"', datanascimento = '"+dataNascimento+"' where cpf = '"+cpf+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void alterarNomeUsuario(String nome, String cpf){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update usuarios set nome = '"+nome+"' where cpf = '"+cpf+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void alterarEmailUsuario(String email, String cpf){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update usuarios set email = '"+email+"' where cpf = '"+cpf+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void alterarSenhaUsuario(String senha, String cpf){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update usuarios set senha = '"+senha+"' where cpf = '"+cpf+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void alterarDataUsuario(String data, String cpf){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update usuarios set datanascimento = '"+data+"' where cpf = '"+cpf+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();

@@ -11,6 +11,7 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import com.example.dao.UsuarioDao;
 import com.example.visao.EnderecoForm;
 import com.example.visao.UsuarioForm;
 
@@ -93,12 +94,45 @@ public class Funcionario{
 
         String cpf = JOptionPane.showInputDialog("Digite o CPF do usuário: ");
 
-        boolean userExist = new UsuarioForm().encontrarUsuario(cpf);
-
-        if(userExist){
+        if(new UsuarioForm().encontrarUsuario(cpf)){
             System.out.println("Existe!");
+                
+            List<Integer> menu = new ArrayList<>();
+            menu.add(1);
+            menu.add(2);
+            menu.add(3);
+            menu.add(4);
+            menu.add(5);
+            Object[] menusArray = menu.toArray();
+
+            int opcaoSelecionad = 1;
+            while(opcaoSelecionad != 5){
+                
+                opcaoSelecionad = JOptionPane.showOptionDialog(null,
+                "1. Alterar nome \n2. Alterar email \n3. Alterar senha \n4. Alterar data de nascimento \n5. Sair",
+                "O que deseja alterar?",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                menusArray, null);
+    
+                if(opcaoSelecionad + 1 == 1){
+                    String newNome = JOptionPane.showInputDialog("Novo nome: ");
+                    new UsuarioForm().alterarNome(newNome, cpf);
+                }else if(opcaoSelecionad + 1 == 2){
+                    String newEmail = JOptionPane.showInputDialog("Novo email: ");
+                    new UsuarioForm().alterarEmail(newEmail, cpf);
+                }else if(opcaoSelecionad + 1 == 3){
+                    String newSenha = JOptionPane.showInputDialog("Nova senha: ");
+                    new UsuarioForm().alterarSenha(newSenha, cpf);
+                }else if(opcaoSelecionad + 1 == 4){
+                    String newData = JOptionPane.showInputDialog("Nova data de nascimento: ");
+                    new UsuarioForm().alterarDataUsuario(newData, cpf);
+                }else if(opcaoSelecionad + 1 == 5){
+                    break;
+            }
+            }
+
         }else{
-            System.out.println("Não existe!");
+            JOptionPane.showMessageDialog(null,"Usuário não cadastrado!");
         }
 
     }

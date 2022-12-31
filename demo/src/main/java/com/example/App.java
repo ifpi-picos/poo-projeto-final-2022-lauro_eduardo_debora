@@ -83,6 +83,7 @@ public class App
                     menu.add(6);
                     menu.add(7);
                     menu.add(8);
+                    menu.add(9);
 
                     int menuSelecionado = 1;
                     while (menu.get(menuSelecionado) != 9) {
