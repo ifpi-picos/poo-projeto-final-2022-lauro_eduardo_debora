@@ -24,11 +24,10 @@ public class Funcionario{
     static List<String> liv = new ArrayList<>();
     // static List<Livro> livrosList = new ArrayList<>();
 
-    public Funcionario(String nome, String CPF, String senha, String id){
+    public Funcionario(String nome, String CPF, String senha){
         this.nome = nome;
         this.CPF = CPF;
         this.senha = senha;
-        this.id = id;
         
     }
 

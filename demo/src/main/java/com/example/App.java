@@ -17,11 +17,11 @@ import com.example.dao.UsuarioDao;
 import com.example.destino.Funcionario;
 import com.example.destino.Livro;
 import com.example.destino.Usuario;
+import com.example.visao.FuncionarioForm;
 import com.example.visao.UsuarioForm;
 
 public class App 
 {
-    static List<Funcionario> funcionarios = new ArrayList<>();
     static List<Usuario> usuarios = new ArrayList<>();
     static List<Livro> livros = new ArrayList<>();
 
@@ -68,12 +68,16 @@ public class App
 
     // Login funcionário
     public static void funcionario() throws ParseException{
-        if(funcionarios.size() > 0){
-            String entrar = JOptionPane.showInputDialog("Seu id: ");
-            String senha = JOptionPane.showInputDialog("Senha: ");
-
-            for(Funcionario funcionario: funcionarios){
-                if(entrar.equals(funcionario.getId()) && senha.equals(funcionario.getSenha())){
+        
+        String entrar = JOptionPane.showInputDialog("CPF do funcionário: ");
+        String senha = JOptionPane.showInputDialog("Senha: ");
+        List<Funcionario> funcionarios = new FuncionarioForm().listarUsuarios();
+        
+        if(new FuncionarioForm().encontrarFuncionario(entrar, senha)){
+            System.out.println("Passou do banco");
+            for(Funcionario funcionario : funcionarios){
+                if(entrar.equals(funcionario.getCPF()) && senha.equals(funcionario.getSenha())){
+                    System.out.println("Passou da lista");
                     List<Integer> menu = new ArrayList<>();
                     menu.add(1);
                     menu.add(2);
@@ -84,7 +88,7 @@ public class App
                     menu.add(7);
                     menu.add(8);
                     menu.add(9);
-
+        
                     int menuSelecionado = 1;
                     while (menu.get(menuSelecionado) != 9) {
                         menuSelecionado = menuFuncionario(menu);
@@ -105,11 +109,14 @@ public class App
                         }else if (menu.get(menuSelecionado) == 8) {
                             funcionario.emprestimo(usuarios, livros);     
                         }
-        }
+                    }
+                }else{
+                    System.out.println("Não passou do banco");
                 }
+           
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Nenhum funcionário cadastrado!");
+            JOptionPane.showMessageDialog(null, "Funcionário não encontrado!");
         }
 
     }
@@ -128,7 +135,7 @@ public class App
             while (menu_interativo.get(menuSelecionado) != 3) {
                 menuSelecionado = menuAdmin(menu_interativo);
                 if (menu_interativo.get(menuSelecionado) == 1) {
-                    Random geradorConta = new Random();
+                    /*Random geradorConta = new Random();
 
                     int num1 = geradorConta.nextInt(9);
                     int num2 = geradorConta.nextInt(9);
@@ -136,15 +143,14 @@ public class App
                     int num4 = geradorConta.nextInt(9);
                     int num5 = geradorConta.nextInt(9);
 
-                    String id_f = "" + num1 + num2 + num3 + num4 + num5;
+                    String id_f = "" + num1 + num2 + num3 + num4 + num5;*/
 
                     String nome_f = JOptionPane.showInputDialog("Seu nome: ");
                     String cpf_f = JOptionPane.showInputDialog("Seu CPF: ");
                     String senha_f = JOptionPane.showInputDialog("Crie uma senha: ");
 
-                    Funcionario funcionario = new Funcionario(nome_f, cpf_f, senha_f, id_f);
-                    funcionarios.add(funcionario);
-                    JOptionPane.showMessageDialog(null, "Seu id de funcionário é: " + id_f);
+                    new FuncionarioForm().cadastrarFuncionario(cpf_f, nome_f, senha_f);
+                    Funcionario funcionario = new Funcionario(nome_f, cpf_f, senha_f);
                 }
            
         }

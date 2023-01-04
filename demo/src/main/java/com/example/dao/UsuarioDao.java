@@ -112,7 +112,7 @@ public class UsuarioDao {
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
 
-            while(result.next()){
+            while(result.next()){;
                 usuarios.add(new Usuario(result.getString("cpf"), result.getString("nome"), result.getString("email"), result.getString("senha"), result.getDate("datanascimento"), result.getString("id_endereco")));
             }
 
