@@ -8,4 +8,12 @@ public class AreaConhecimento{
         this.titulo = titu;
         this.descricao = descri;
     }
+
+    public String gettitulo(){
+        return titulo;
+    }
+
+    public String getdescricao(){
+        return descricao;
+    }
 }

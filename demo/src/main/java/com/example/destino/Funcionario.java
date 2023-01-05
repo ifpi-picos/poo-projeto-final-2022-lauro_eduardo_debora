@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 import com.example.dao.UsuarioDao;
+import com.example.visao.AreaConhecimentoForm;
 import com.example.visao.EnderecoForm;
 import com.example.visao.UsuarioForm;
 
@@ -247,6 +248,13 @@ public class Funcionario{
         }else{
             JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
         }
+    }
+
+    public void cadastrarAreadeconhecimento(){
+        String titulo = JOptionPane.showInputDialog("Qual o título?");
+        String descricao = JOptionPane.showInputDialog("Escreva a descrição dessa área");
+
+        new AreaConhecimentoForm().cadastrarAreadeConhecimento(titulo, descricao);
     }
 }
 

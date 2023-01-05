@@ -1,24 +1,24 @@
 package com.example;
 
 
-import java.util.Date;
+/*import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.SQLException;*/
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+//import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import com.example.dao.UsuarioDao;
+//import com.example.dao.UsuarioDao;
 import com.example.destino.Funcionario;
 import com.example.destino.Livro;
 import com.example.destino.Usuario;
 import com.example.visao.FuncionarioForm;
-import com.example.visao.UsuarioForm;
+//import com.example.visao.UsuarioForm;
 
 public class App 
 {
@@ -59,7 +59,7 @@ public class App
     public static int menuFuncionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Adicionar livro \n5. Alterar livro \n6. Remover livro \n7. Listar livros \n8. Emprestimo \n9. Sair",
+                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Adicionar livro \n5. Alterar livro \n6. Remover livro \n7. Listar livros \n8. Emprestimo \n9. Cadastrar área de conhecimento \n10. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -88,9 +88,10 @@ public class App
                     menu.add(7);
                     menu.add(8);
                     menu.add(9);
+                    menu.add(10);
         
                     int menuSelecionado = 1;
-                    while (menu.get(menuSelecionado) != 9) {
+                    while (menu.get(menuSelecionado) != 10) {
                         menuSelecionado = menuFuncionario(menu);
                         if (menu.get(menuSelecionado) == 1) {
                             funcionario.adicionarUsuario(usuarios);
@@ -108,6 +109,8 @@ public class App
                             funcionario.listarLivros(livros);
                         }else if (menu.get(menuSelecionado) == 8) {
                             funcionario.emprestimo(usuarios, livros);     
+                        }else if (menu.get(menuSelecionado) == 9) {
+                            funcionario.cadastrarAreadeconhecimento();     
                         }
                     }
                 }else{
@@ -150,7 +153,6 @@ public class App
                     String senha_f = JOptionPane.showInputDialog("Crie uma senha: ");
 
                     new FuncionarioForm().cadastrarFuncionario(cpf_f, nome_f, senha_f);
-                    Funcionario funcionario = new Funcionario(nome_f, cpf_f, senha_f);
                 }
            
         }
