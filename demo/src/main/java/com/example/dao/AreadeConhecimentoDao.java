@@ -20,7 +20,7 @@ public class AreadeConhecimentoDao {
     public void adicionarUsuario(AreaConhecimento area){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "insert into areas_conhecimento (titulo, descricao) values ('"+area.gettitulo()+"', '"+area.getdescricao()+"')";
+            String sql = "insert into areas_conhecimento (id_area, titulo, descricao) values ('"+area.getId()+"','"+area.gettitulo()+"', '"+area.getdescricao()+"')";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class AreadeConhecimentoDao {
     }
 
     public List<AreaConhecimento> buscarAreas(){
-        String sql = "select titulo, descricao from areas_conhecimento";
+        String sql = "select id_area, titulo, descricao from areas_conhecimento";
         List<AreaConhecimento> area = new ArrayList<>();
 
         try {
@@ -63,7 +63,7 @@ public class AreadeConhecimentoDao {
             ResultSet result = stm.executeQuery(sql);
 
             while(result.next()){;
-                area.add(new AreaConhecimento(result.getString("titulo"), result.getString("descricao")));
+                area.add(new AreaConhecimento(result.getString("titulo"), result.getString("descricao"), result.getInt("id_area")));
             }
 
             return area;

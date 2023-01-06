@@ -7,18 +7,28 @@ public class Livro{
     private String autor;
     private Date dataPublicacao;
     private int numCopias = 0;
-    private AreaConhecimento detalhe;
+    private int id_area;
+    private int id_livro;
+    private String CPF;
 
-    public Livro(String titulo, String autor, /*Date dataPublicacao,*/ int numCopias, AreaConhecimento informacao){
+    //String String String int Date String int
+
+    public Livro(int idlivro,String titulo, String autor, int numCopias, Date dataPublicacao, String cpffuncionario, int idArea){
         this.titulo = titulo;
         this.autor = autor;
-        //this.dataPublicacao = dataPublicacao;
+        this.dataPublicacao = dataPublicacao;
         this.numCopias = numCopias;
-        this.detalhe = informacao;
+        this.CPF = cpffuncionario;
+        this.id_livro = idlivro;
+        this.id_area = idArea;
     }
 
     public String getTitulo(){
         return titulo;
+    }
+
+    public String getCPFfuncionario(){
+        return CPF;
     }
     
     public String getAutor() {
@@ -31,6 +41,14 @@ public class Livro{
     
     public int getNumCopias() {
         return numCopias;
+    }
+
+    public int getIdarea() {
+        return id_area;
+    }
+
+    public int getIdlivro() {
+        return id_livro;
     }
 
     public void setNumCopias(int num){

@@ -100,7 +100,7 @@ public class App
                         }else if (menu.get(menuSelecionado) == 3) {
                             funcionario.removerUsuario();
                         }else if (menu.get(menuSelecionado) == 4) {
-                            funcionario.adicionarLivro(livros);
+                            funcionario.adicionarLivro(livros, funcionario);
                         }else if (menu.get(menuSelecionado) == 5) {
                             funcionario.alterarLivro(livros);
                         }else if (menu.get(menuSelecionado) == 6) {
