@@ -54,7 +54,7 @@ public class UsuarioDao {
         }
     }
 
-    public void alterarUsuario(String nome, String email, String senha, Date dataNascimento, String cpf){
+    /* public void alterarUsuario(String nome, String email, String senha, Date dataNascimento, String cpf){
         try {
             Statement stm = conexao.createStatement();
             String sql = "update usuarios set nome = '"+nome+"', email = '"+email+"', senha = '"+senha+"', datanascimento = '"+dataNascimento+"' where cpf = '"+cpf+"'";
@@ -62,7 +62,7 @@ public class UsuarioDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } */
 
     public void alterarNomeUsuario(String nome, String cpf){
         try {
@@ -104,8 +104,18 @@ public class UsuarioDao {
         }
     }
 
+    public void deletarUsuario(String cpf){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "delete from usuarios where usuarios.cpf = '"+cpf+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Usuario> buscarUsuarios(){
-        String sql = "select cpf, nome, email, senha, datanascimento from usuarios";
+        String sql = "select cpf, nome, email, senha, datanascimento, id_endereco from usuarios";
         List<Usuario> usuarios = new ArrayList<>();
 
         try {

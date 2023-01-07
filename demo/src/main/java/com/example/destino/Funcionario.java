@@ -2,6 +2,7 @@ package com.example.destino;
 
 //import java.time.LocalDateTime;
 import java.util.Date;
+import java.io.Console;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class Funcionario{
     private String id;
 
     static List<String> liv = new ArrayList<>();
-    // static List<Livro> livrosList = new ArrayList<>();
 
     public Funcionario(String nome, String CPF, String senha){
         this.nome = nome;
@@ -50,46 +50,47 @@ public class Funcionario{
         return senha;
     }
 
-    public void adicionarUsuario(List<Usuario> usuarios) throws ParseException{
+    public void adicionarUsuario() throws ParseException{
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-        String Nome_p = JOptionPane.showInputDialog("Seu nome: ");
         String CPF_p = JOptionPane.showInputDialog("Seu CPF: ");
-        String dataNascimento_p = JOptionPane.showInputDialog("Data de Nascimento: ");
-        for (Usuario usuario : usuarios) {
-            // Autenticando o cliente que será acessado
-            if (CPF_p.equals(usuario.getCpf())) {
-                JOptionPane.showMessageDialog(null, "Esse CPF já está cadastrado!");
-                adicionarUsuario(usuarios);
-                }
+
+        if(new UsuarioForm().encontrarUsuario(CPF_p)){
+            JOptionPane.showMessageDialog(null,"CPF já cadastrado!");      
+        }else{
+            try {
+                String Nome_p = JOptionPane.showInputDialog("Seu nome: ");
+                String dataNascimento_p = JOptionPane.showInputDialog("Data de Nascimento: ");
+                String senha_p = JOptionPane.showInputDialog("Crie uma senha: ");
+                String email_p = JOptionPane.showInputDialog("Seu e-mail: ");
+                
+                String bairro_p = JOptionPane.showInputDialog("Seu bairro: ");
+                String rua_p = JOptionPane.showInputDialog("Sua rua: ");
+                String numero_p = JOptionPane.showInputDialog("Número da casa: ");
+                String cep_p = JOptionPane.showInputDialog("Seu CEP: ");
+        
+                long convertor_cep = Long.parseLong(cep_p);
+                int convertor_num = Integer.parseInt(numero_p);
+                Date dataNascimento = formatter.parse(dataNascimento_p);
+        
+                Random geradorConta = new Random();
+                int num1 = geradorConta.nextInt(9);
+                int num2 = geradorConta.nextInt(9);
+                int num3 = geradorConta.nextInt(9);
+                int num4 = geradorConta.nextInt(9);
+        
+                String id_endere = "" + num1 + num2 + num3 + num4;
+        
+                new EnderecoForm().cadastrarEndereco(id_endere, bairro_p, rua_p, convertor_num, convertor_cep);
+                new UsuarioForm().cadastrarUsuario(CPF_p, Nome_p, email_p, senha_p, dataNascimento, id_endere);
+
+                JOptionPane.showMessageDialog(null,"Usuário cadastrado com sucesso!"); 
+            } catch (Exception e) {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Dados inseridos incorretos!");
+            }
         }
-
-        String senha_p = JOptionPane.showInputDialog("Crie uma senha: ");
-        String email_p = JOptionPane.showInputDialog("Seu e-mail: ");
-        String bairro_p = JOptionPane.showInputDialog("Seu bairro: ");
-        String rua_p = JOptionPane.showInputDialog("Sua rua: ");
-        String numero_p = JOptionPane.showInputDialog("Número da casa: ");
-        String cep_p = JOptionPane.showInputDialog("Seu CEP: ");
-
-        long convertor_cep = Long.parseLong(cep_p);
-        int convertor_num = Integer.parseInt(numero_p);
-        Date dataNascimento = formatter.parse(dataNascimento_p);
-
-        Random geradorConta = new Random();
-        int num1 = geradorConta.nextInt(9);
-        int num2 = geradorConta.nextInt(9);
-        int num3 = geradorConta.nextInt(9);
-        int num4 = geradorConta.nextInt(9);
-
-        String id_endere = "" + num1 + num2 + num3 + num4;
-
-        new EnderecoForm().cadastrarEndereco(id_endere, bairro_p, rua_p, convertor_num, convertor_cep);
-        new UsuarioForm().cadastrarUsuario(CPF_p, Nome_p, email_p, senha_p, dataNascimento, id_endere);
-
-        // Endereco endereco = new Endereco(bairro_p,rua_p,convertor_nu,convertor_n);
-        // Usuario Usuario = new Usuario(Nome_p, email_p, senha_p, CPF_p, endereco);
-        // usuarios.add(Usuario);
     }
 
     public void alterarUsuario(){
@@ -119,15 +120,19 @@ public class Funcionario{
                 if(opcaoSelecionad + 1 == 1){
                     String newNome = JOptionPane.showInputDialog("Novo nome: ");
                     new UsuarioForm().alterarNome(newNome, cpf);
+                    JOptionPane.showMessageDialog(null,"Nome alterado com sucesso!");
                 }else if(opcaoSelecionad + 1 == 2){
                     String newEmail = JOptionPane.showInputDialog("Novo email: ");
                     new UsuarioForm().alterarEmail(newEmail, cpf);
+                    JOptionPane.showMessageDialog(null,"Email alterado com sucesso!");
                 }else if(opcaoSelecionad + 1 == 3){
                     String newSenha = JOptionPane.showInputDialog("Nova senha: ");
                     new UsuarioForm().alterarSenha(newSenha, cpf);
+                    JOptionPane.showMessageDialog(null,"Senha alterada com sucesso!");
                 }else if(opcaoSelecionad + 1 == 4){
                     String newData = JOptionPane.showInputDialog("Nova data de nascimento: ");
                     new UsuarioForm().alterarDataUsuario(newData, cpf);
+                    JOptionPane.showMessageDialog(null,"Data de nascimento alterada com sucesso!");
                 }else if(opcaoSelecionad + 1 == 5){
                     break;
             }
@@ -140,6 +145,19 @@ public class Funcionario{
     }
     public void removerUsuario(){
 
+        String cpf = JOptionPane.showInputDialog("Digite o CPF do usuário: ");
+
+        if(new UsuarioForm().encontrarUsuario(cpf)){
+            new UsuarioForm().removerUsuario(cpf);
+            JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
+        }  
+
+    }
+
+    public void listarUsuarios(){
+        new UsuarioForm().listarUsuarios();
     }
 
     public void adicionarLivro(List<Livro> livros, Funcionario funcio) throws ParseException{

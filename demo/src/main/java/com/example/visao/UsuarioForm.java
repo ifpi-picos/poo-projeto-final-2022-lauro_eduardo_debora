@@ -1,7 +1,10 @@
 package com.example.visao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import com.example.dao.UsuarioDao;
 import com.example.destino.Usuario;
@@ -33,12 +36,26 @@ public class UsuarioForm {
         new UsuarioDao().alterarDataUsuario(data, cpf);
     }
 
+    public void removerUsuario(String cpf){
+        new UsuarioDao().deletarUsuario(cpf);
+    }
+
     public void listarUsuarios(){
         List<Usuario> usuariosCadastrados = new UsuarioDao().buscarUsuarios();
+        List<String> listUsuarios = new ArrayList<>();
         
         for(int i = 0; i < usuariosCadastrados.size(); i++){
-            System.out.println(usuariosCadastrados.get(i).getNome() + "-" + usuariosCadastrados.get(i).getEmail());
+            /* System.out.println("CPF: " + usuariosCadastrados.get(i).getCpf() + ", " + "Nome: " + usuariosCadastrados.get(i).getNome() + ", " + "Email: " + usuariosCadastrados.get(i).getEmail() + ", " + "Data nascimento: " + usuariosCadastrados.get(i).getDataNasc() + ", " + "idEndereço: " + usuariosCadastrados.get(i).getIdEndereco()); */
+
+            listUsuarios.add("CPF: " + usuariosCadastrados.get(i).getCpf() + ", " + "Nome: " + usuariosCadastrados.get(i).getNome() + ", " + "Email: " + usuariosCadastrados.get(i).getEmail() + ", " + "Data nascimento: " + usuariosCadastrados.get(i).getDataNasc() + ", " + "idEndereço: " + usuariosCadastrados.get(i).getIdEndereco());
         }
+
+        String usuarios = "";
+        for(String item : listUsuarios){
+            usuarios += item + "\n";
+        }
+
+        JOptionPane.showMessageDialog(null, usuarios);
     }
     
 }

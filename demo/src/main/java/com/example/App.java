@@ -59,7 +59,7 @@ public class App
     public static int menuFuncionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Adicionar livro \n5. Alterar livro \n6. Remover livro \n7. Listar livros \n8. Emprestimo \n9. Cadastrar área de conhecimento \n10. Sair",
+                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Listar usuários \n5. Adicionar livro \n6. Alterar livro \n7. Remover livro \n8. Listar livros \n9. Emprestimo \n10. Cadastrar área de conhecimento \n11. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -89,27 +89,30 @@ public class App
                     menu.add(8);
                     menu.add(9);
                     menu.add(10);
+                    menu.add(11);
         
                     int menuSelecionado = 1;
-                    while (menu.get(menuSelecionado) != 10) {
+                    while (menu.get(menuSelecionado) != 11) {
                         menuSelecionado = menuFuncionario(menu);
                         if (menu.get(menuSelecionado) == 1) {
-                            funcionario.adicionarUsuario(usuarios);
+                            funcionario.adicionarUsuario();
                         } else if (menu.get(menuSelecionado) == 2) {
                             funcionario.alterarUsuario();
                         }else if (menu.get(menuSelecionado) == 3) {
                             funcionario.removerUsuario();
                         }else if (menu.get(menuSelecionado) == 4) {
-                            funcionario.adicionarLivro(livros, funcionario);
+                            funcionario.listarUsuarios();
                         }else if (menu.get(menuSelecionado) == 5) {
-                            funcionario.alterarLivro(livros);
+                            funcionario.adicionarLivro(livros, funcionario);
                         }else if (menu.get(menuSelecionado) == 6) {
-                            funcionario.removerLivro(livros);
+                            funcionario.alterarLivro(livros);
                         }else if (menu.get(menuSelecionado) == 7) {
-                            funcionario.listarLivros(livros);
+                            funcionario.removerLivro(livros);
                         }else if (menu.get(menuSelecionado) == 8) {
-                            funcionario.emprestimo(usuarios, livros);     
+                            funcionario.listarLivros(livros);
                         }else if (menu.get(menuSelecionado) == 9) {
+                            funcionario.emprestimo(usuarios, livros);     
+                        }else if (menu.get(menuSelecionado) == 10) {
                             funcionario.cadastrarAreadeconhecimento();     
                         }
                     }
