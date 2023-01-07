@@ -50,7 +50,7 @@ public class Funcionario{
         return senha;
     }
 
-    public void adicionarUsuario() throws ParseException{
+    public void adicionarUsuario(String cpfFuncionario) throws ParseException{
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -83,7 +83,7 @@ public class Funcionario{
                 String id_endere = "" + num1 + num2 + num3 + num4;
         
                 new EnderecoForm().cadastrarEndereco(id_endere, bairro_p, rua_p, convertor_num, convertor_cep);
-                new UsuarioForm().cadastrarUsuario(CPF_p, Nome_p, email_p, senha_p, dataNascimento, id_endere);
+                new UsuarioForm().cadastrarUsuario(CPF_p, Nome_p, email_p, senha_p, dataNascimento, id_endere, cpfFuncionario);
 
                 JOptionPane.showMessageDialog(null,"Usuário cadastrado com sucesso!"); 
             } catch (Exception e) {
@@ -271,7 +271,7 @@ public class Funcionario{
                                     Float valor_e = Float.parseFloat(valor);
                                     Integer tempo = Integer.parseInt(tempo_com_livro);
                                     Emprestimo empres = new Emprestimo(/*now,*/livro,uso,valor_e,tempo);
-                                    uso.setEmprestimo(empres);
+                                    /* uso.setEmprestimo(empres); */
                                     livro.setNumCopias(livro.getNumCopias() - 1);
                                 }else{
                                     JOptionPane.showMessageDialog(null, "Livro sem estoque!");

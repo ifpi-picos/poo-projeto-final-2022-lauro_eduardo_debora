@@ -10,8 +10,7 @@ public class Usuario{
     private String senha;
     private Date dataNascimento;
     private String idEndereco;
-    // private Boolean confirma;
-    private Emprestimo emprestimo;
+    private String cpfFuncionario;
     
     
     /* public Usuario(String Nome_p, String email, String Senha, String Cpf, Endereco endereco){
@@ -23,13 +22,14 @@ public class Usuario{
         // this.endereco = endereco;
     } */
 
-    public Usuario(String cpf, String nome, String email, String senha, Date datanascimento, String endereco){
+    public Usuario(String cpf, String nome, String email, String senha, Date datanascimento, String endereco, String cpfFuncionario){
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.dataNascimento = datanascimento;
         this.idEndereco = endereco;
+        this.cpfFuncionario = cpfFuncionario;
     }
 
     public String getCpf(){
@@ -56,13 +56,8 @@ public class Usuario{
         return idEndereco;
     }
 
-    public void setEmprestimo(Emprestimo empre){
-        this.emprestimo = empre;
+    public String getCpfFuncionario() {
+        return cpfFuncionario;
     }
-
-    public Emprestimo getEmprestimo(){
-        return emprestimo;
-    }
-
 }
 

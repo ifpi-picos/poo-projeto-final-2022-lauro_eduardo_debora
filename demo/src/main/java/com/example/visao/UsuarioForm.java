@@ -11,8 +11,8 @@ import com.example.destino.Usuario;
 
 public class UsuarioForm {
 
-    public void cadastrarUsuario(String cpf, String nome, String email, String senha, Date dataNascimento, String idEndereco){
-        Usuario usuario = new Usuario(cpf, nome, email, senha, dataNascimento, idEndereco);
+    public void cadastrarUsuario(String cpf, String nome, String email, String senha, Date dataNascimento, String idEndereco, String cpfFuncionario){
+        Usuario usuario = new Usuario(cpf, nome, email, senha, dataNascimento, idEndereco, cpfFuncionario);
         new UsuarioDao().adicionarUsuario(usuario);
     }
 
@@ -47,7 +47,7 @@ public class UsuarioForm {
         for(int i = 0; i < usuariosCadastrados.size(); i++){
             /* System.out.println("CPF: " + usuariosCadastrados.get(i).getCpf() + ", " + "Nome: " + usuariosCadastrados.get(i).getNome() + ", " + "Email: " + usuariosCadastrados.get(i).getEmail() + ", " + "Data nascimento: " + usuariosCadastrados.get(i).getDataNasc() + ", " + "idEndereço: " + usuariosCadastrados.get(i).getIdEndereco()); */
 
-            listUsuarios.add("CPF: " + usuariosCadastrados.get(i).getCpf() + ", " + "Nome: " + usuariosCadastrados.get(i).getNome() + ", " + "Email: " + usuariosCadastrados.get(i).getEmail() + ", " + "Data nascimento: " + usuariosCadastrados.get(i).getDataNasc() + ", " + "idEndereço: " + usuariosCadastrados.get(i).getIdEndereco());
+            listUsuarios.add("CPF: " + usuariosCadastrados.get(i).getCpf() + ", " + "Nome: " + usuariosCadastrados.get(i).getNome() + ", " + "Email: " + usuariosCadastrados.get(i).getEmail() + ", " + "Data nascimento: " + usuariosCadastrados.get(i).getDataNasc() + ", " + "idEndereço: " + usuariosCadastrados.get(i).getIdEndereco() + ", " + "cpfFuncionario: " + usuariosCadastrados.get(i).getCpfFuncionario());
         }
 
         String usuarios = "";
@@ -55,7 +55,12 @@ public class UsuarioForm {
             usuarios += item + "\n";
         }
 
-        JOptionPane.showMessageDialog(null, usuarios);
+        if(usuarios == ""){
+            JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado!");
+        }else{
+            JOptionPane.showMessageDialog(null, usuarios);
+        }
+        
     }
     
 }

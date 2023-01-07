@@ -83,10 +83,11 @@ public class App
                     menu.add(2);
                     menu.add(3);
                     menu.add(4);
+                    menu.add(5);
 
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Sair",
+                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Listar usuários \n5. Sair",
                 "Opções usuários",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -101,10 +102,11 @@ public class App
                     menu.add(4);
                     menu.add(5);
                     menu.add(6);
+                    menu.add(7);
 
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar livro \n2. Alterar livro \n3. Remover livro \n4. Adicionar área de conhecimento \n5. Remover área de conhecimento \n6. Sair",
+                "1. Adicionar livro \n2. Alterar livro \n3. Remover livro \n4. Listar livros \n5. Adicionar área de conhecimento \n6. Remover área de conhecimento \n7. Sair",
                 "Opções livros",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -134,19 +136,21 @@ public class App
                         menuSelecionado = menuFuncOpt(menu);
                         if (menu.get(menuSelecionado) == 1) {
                             int option = 0;
-                            while(option != 3){
+                            while(option != 4){
                                 option = menuFuncUsuario();
                                 if(option == 0){
-                                    funcionario.adicionarUsuario();
+                                    funcionario.adicionarUsuario(entrar);
                                 }else if(option == 1){
                                     funcionario.alterarUsuario();
                                 }else if(option == 2){
                                     funcionario.removerUsuario();
+                                }else if(option == 3){
+                                    funcionario.listarUsuarios();
                                 }
                             }
                         } else if (menu.get(menuSelecionado) == 2) {
                             int option = 0;
-                            while(option != 5){
+                            while(option != 6){
                                 option = menuFuncLivro();
                                 if(option == 0){
                                     funcionario.adicionarLivro(livros, funcionario);
@@ -155,8 +159,10 @@ public class App
                                 }else if(option == 2){
                                     funcionario.removerLivro(livros);
                                 }else if(option == 3){
-                                    funcionario.cadastrarAreadeconhecimento();
+                                    funcionario.listarLivros(livros);
                                 }else if(option == 4){
+                                    funcionario.cadastrarAreadeconhecimento();
+                                }else if(option == 5){
                                   System.out.println("Remover area");
                                 }
                             }

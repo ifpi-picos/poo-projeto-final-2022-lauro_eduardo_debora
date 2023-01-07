@@ -20,7 +20,7 @@ public class UsuarioDao {
     public void adicionarUsuario(Usuario usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "insert into usuarios (cpf, nome, email, senha, datanascimento, id_endereco) values ('"+usuario.getCpf()+"', '"+usuario.getNome()+"', '"+usuario.getEmail()+"', '"+usuario.getSenha()+"', '"+usuario.getDataNasc()+"', '"+usuario.getIdEndereco()+"')";
+            String sql = "insert into usuarios (cpf, nome, email, senha, datanascimento, id_endereco, cpf_funcionario) values ('"+usuario.getCpf()+"', '"+usuario.getNome()+"', '"+usuario.getEmail()+"', '"+usuario.getSenha()+"', '"+usuario.getDataNasc()+"', '"+usuario.getIdEndereco()+"', '"+usuario.getCpfFuncionario()+"')";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,7 +115,7 @@ public class UsuarioDao {
     }
 
     public List<Usuario> buscarUsuarios(){
-        String sql = "select cpf, nome, email, senha, datanascimento, id_endereco from usuarios";
+        String sql = "select cpf, nome, email, senha, datanascimento, id_endereco, cpf_funcionario from usuarios";
         List<Usuario> usuarios = new ArrayList<>();
 
         try {
@@ -123,7 +123,7 @@ public class UsuarioDao {
             ResultSet result = stm.executeQuery(sql);
 
             while(result.next()){;
-                usuarios.add(new Usuario(result.getString("cpf"), result.getString("nome"), result.getString("email"), result.getString("senha"), result.getDate("datanascimento"), result.getString("id_endereco")));
+                usuarios.add(new Usuario(result.getString("cpf"), result.getString("nome"), result.getString("email"), result.getString("senha"), result.getDate("datanascimento"), result.getString("id_endereco"), result.getString("cpf_funcionario")));
             }
 
             return usuarios;
