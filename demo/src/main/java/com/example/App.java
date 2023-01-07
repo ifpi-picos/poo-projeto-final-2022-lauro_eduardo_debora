@@ -1,6 +1,7 @@
 package com.example;
 
 
+import java.io.Console;
 /*import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -56,7 +57,7 @@ public class App
         return opcaoSelecionad;
     }
 
-    public static int menuFuncionario(List<Integer> menu) {
+    /* public static int menuFuncionario(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
                 "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Listar usuários \n5. Adicionar livro \n6. Alterar livro \n7. Remover livro \n8. Listar livros \n9. Emprestimo \n10. Cadastrar área de conhecimento \n11. Sair",
@@ -64,10 +65,118 @@ public class App
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
         return opcaoSelecionad;
+    } */
+
+    public static int menuFuncOpt(List<Integer> menu) {
+        Object[] menusArray = menu.toArray();
+        int opcaoSelecionad = JOptionPane.showOptionDialog(null,
+                "1. Opções usuários \n2. Opções livros \n3. Empréstimo \n4. Sair",
+                "Menu do Funcionário",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                menusArray, null);
+        return opcaoSelecionad;
+    }
+
+    public static int menuFuncUsuario() {
+        List<Integer> menu = new ArrayList<>();
+                    menu.add(1);
+                    menu.add(2);
+                    menu.add(3);
+                    menu.add(4);
+
+        Object[] menusArray = menu.toArray();
+        int opcaoSelecionad = JOptionPane.showOptionDialog(null,
+                "1. Adicionar usuário \n2. Alterar usuário \n3. Remover usuário \n4. Sair",
+                "Opções usuários",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                menusArray, null);
+        return opcaoSelecionad;
+    }
+
+    public static int menuFuncLivro(){
+        List<Integer> menu = new ArrayList<>();
+                    menu.add(1);
+                    menu.add(2);
+                    menu.add(3);
+                    menu.add(4);
+                    menu.add(5);
+                    menu.add(6);
+
+        Object[] menusArray = menu.toArray();
+        int opcaoSelecionad = JOptionPane.showOptionDialog(null,
+                "1. Adicionar livro \n2. Alterar livro \n3. Remover livro \n4. Adicionar área de conhecimento \n5. Remover área de conhecimento \n6. Sair",
+                "Opções livros",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                menusArray, null);
+        return opcaoSelecionad;
+    }
+    
+
+    public static void funcionario() throws ParseException{
+        
+        String entrar = JOptionPane.showInputDialog("CPF do funcionário: ");
+        String senha = JOptionPane.showInputDialog("Senha: ");
+        List<Funcionario> funcionarios = new FuncionarioForm().listarUsuarios();
+        
+        if(new FuncionarioForm().encontrarFuncionario(entrar, senha)){
+            System.out.println("Passou do banco");
+            for(Funcionario funcionario : funcionarios){
+                if(entrar.equals(funcionario.getCPF()) && senha.equals(funcionario.getSenha())){
+                    System.out.println("Passou da lista");
+                    List<Integer> menu = new ArrayList<>();
+                    menu.add(1);
+                    menu.add(2);
+                    menu.add(3);
+                    menu.add(4);
+        
+                    int menuSelecionado = 1;
+                    while (menu.get(menuSelecionado) != 4) {
+                        menuSelecionado = menuFuncOpt(menu);
+                        if (menu.get(menuSelecionado) == 1) {
+                            int option = 0;
+                            while(option != 3){
+                                option = menuFuncUsuario();
+                                if(option == 0){
+                                    funcionario.adicionarUsuario();
+                                }else if(option == 1){
+                                    funcionario.alterarUsuario();
+                                }else if(option == 2){
+                                    funcionario.removerUsuario();
+                                }
+                            }
+                        } else if (menu.get(menuSelecionado) == 2) {
+                            int option = 0;
+                            while(option != 5){
+                                option = menuFuncLivro();
+                                if(option == 0){
+                                    funcionario.adicionarLivro(livros, funcionario);
+                                }else if(option == 1){
+                                    funcionario.alterarLivro(livros);
+                                }else if(option == 2){
+                                    funcionario.removerLivro(livros);
+                                }else if(option == 3){
+                                    funcionario.cadastrarAreadeconhecimento();
+                                }else if(option == 4){
+                                  System.out.println("Remover area");
+                                }
+                            }
+                        }else if (menu.get(menuSelecionado) == 3) {
+                            funcionario.emprestimo(usuarios, livros);
+                        }
+                    }
+                }else{
+                    System.out.println("Não passou do banco");
+                }
+           
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Funcionário não encontrado!");
+        }
+
     }
 
     // Login funcionário
-    public static void funcionario() throws ParseException{
+    /* public static void funcionario() throws ParseException{
         
         String entrar = JOptionPane.showInputDialog("CPF do funcionário: ");
         String senha = JOptionPane.showInputDialog("Senha: ");
@@ -125,7 +234,7 @@ public class App
             JOptionPane.showMessageDialog(null, "Funcionário não encontrado!");
         }
 
-    }
+    } */
 
     // Login admin
     public static void admin(){
