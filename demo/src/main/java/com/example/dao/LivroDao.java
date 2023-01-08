@@ -21,7 +21,7 @@ public class LivroDao {
      public void adicionarLivro(Livro livro){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "insert into livros (id_livro, titulo, autor, data_publicacao, num_copias, cpf_funcionario, id_area) values ('"+livro.getIdlivro()+"','"+livro.getTitulo()+"', '"+livro.getAutor()+"', '"+livro.getDataPublicacao()+"', '"+livro.getNumCopias()+"', '"+livro.getCPFfuncionario()+"', '"+livro.getIdarea()+"')";
+            String sql = "insert into livros (id_livro, titulo, autor, data_publicacao, num_copias, cpf_funcionario, area) values ('"+livro.getId_livro()+"','"+livro.getTitulo()+"', '"+livro.getAutor()+"', '"+livro.getDataPublicacao()+"', '"+livro.getNumCopias()+"', '"+livro.getCpfFunc()+"', '"+livro.getArea()+"')";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +58,7 @@ public class LivroDao {
     }
 
     public List<Livro> buscarlivros(){
-        String sql = "select id_livro, titulo, autor, data_publicacao, num_copias, cpf_funcionarios, id_area from usuarios";
+        String sql = "select id_livro, titulo, autor, data_publicacao, num_copias, cpf_funcionario, area from usuarios";
         List<Livro> livros = new ArrayList<>();
 
         try {
@@ -66,7 +66,7 @@ public class LivroDao {
             ResultSet result = stm.executeQuery(sql);
 
             while(result.next()){;
-                livros.add(new Livro(result.getInt("id_livro"), result.getString("titulo"), result.getString("autor"), result.getInt("num_copias"), result.getDate("data_publicacao"), result.getString("cpf_funcionarios"), result.getInt("id_area")));
+                livros.add(new Livro(result.getInt("id_livro"), result.getString("titulo"), result.getString("autor"), result.getDate("data_publicacao"), result.getInt("num_copias"), result.getString("cpf_funcionario"), result.getString("area")));
             }
 //String String String int Date String int 
             return livros;

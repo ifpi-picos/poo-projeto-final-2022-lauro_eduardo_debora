@@ -160,7 +160,7 @@ public class Funcionario{
         new UsuarioForm().listarUsuarios();
     }
 
-    public void adicionarLivro(List<Livro> livros, Funcionario funcio) throws ParseException{
+    /* public void adicionarLivro(List<Livro> livros, Funcionario funcio) throws ParseException{
 
         List<AreaConhecimento> area = new AreaConhecimentoForm().listarAreaConhecimento();
         //new AreaConhecimentoForm().listarConhecimento();
@@ -193,6 +193,39 @@ public class Funcionario{
 
         //int String String int Date String int
         
+    } */
+
+    public void adicionarLivro(String cpfFunc) throws ParseException{
+
+        new AreaConhecimentoForm().listarAreas();
+
+        if(new AreaConhecimentoForm().listarAreaConhecimento()){
+            String titulo = JOptionPane.showInputDialog("Título da área do livro: ");
+
+            if(new AreaConhecimentoForm().encontrarAreaConhecimento(titulo)){
+                Random geradorConta = new Random();
+                int num1 = geradorConta.nextInt(9);
+                int num2 = geradorConta.nextInt(9);
+                int num3 = geradorConta.nextInt(9);
+                int num4 = geradorConta.nextInt(9);
+
+                String id_livro = "" + num1 + num2 + num3 + num4;
+                Integer id_l = Integer.parseInt(id_livro);
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String Nome_l = JOptionPane.showInputDialog("Nome do livro: ");
+                String autor_nome = JOptionPane.showInputDialog("Nome do autor do livro: ");
+                String data_l = JOptionPane.showInputDialog("Data de publicação: ");
+                String quant_l = JOptionPane.showInputDialog("Quantos livros estão sendo adicionados? ");
+                Integer quant = Integer.parseInt(quant_l);
+                Date data = formatter.parse(data_l);
+
+                new LivroForm().cadastrarlivro(id_l, Nome_l, autor_nome, data, quant, cpfFunc, titulo);
+
+                JOptionPane.showMessageDialog(null, "Livro cadastrado com sucesso!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Área de conhecimento não cadastrada!");
+            }
+        }
     }
 
     // Removendo livro do sistema
@@ -293,18 +326,25 @@ public class Funcionario{
 
     public void cadastrarAreadeconhecimento(){
         String titulo = JOptionPane.showInputDialog("Qual o título?");
-        String descricao = JOptionPane.showInputDialog("Escreva a descrição dessa área");
 
-        Random geradorConta = new Random();
-        int num1 = geradorConta.nextInt(9);
-        int num2 = geradorConta.nextInt(9);
-        int num3 = geradorConta.nextInt(9);
-        int num4 = geradorConta.nextInt(9);
+        if(new AreaConhecimentoForm().encontrarAreaConhecimento(titulo)){
+            JOptionPane.showMessageDialog(null, "Área já cadastrada!");
+        }else{
+            String descricao = JOptionPane.showInputDialog("Escreva a descrição dessa área");
 
-        String id_area = "" + num1 + num2 + num3 + num4;
-        Integer id = Integer.parseInt(id_area);
+            /* Random geradorConta = new Random();
+            int num1 = geradorConta.nextInt(9);
+            int num2 = geradorConta.nextInt(9);
+            int num3 = geradorConta.nextInt(9);
+            int num4 = geradorConta.nextInt(9);
 
-        new AreaConhecimentoForm().cadastrarAreadeConhecimento(titulo, descricao, id);
+            String id_area = "" + num1 + num2 + num3 + num4;
+            Integer id = Integer.parseInt(id_area); */
+
+            new AreaConhecimentoForm().cadastrarAreadeConhecimento(titulo, descricao);
+
+            JOptionPane.showMessageDialog(null, "Área cadastrada com sucesso!");
+        }
     }
 }
 

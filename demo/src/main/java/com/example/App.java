@@ -153,7 +153,7 @@ public class App
                             while(option != 6){
                                 option = menuFuncLivro();
                                 if(option == 0){
-                                    funcionario.adicionarLivro(livros, funcionario);
+                                    funcionario.adicionarLivro(entrar);
                                 }else if(option == 1){
                                     funcionario.alterarLivro(livros);
                                 }else if(option == 2){

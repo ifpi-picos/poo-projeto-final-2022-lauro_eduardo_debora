@@ -8,8 +8,8 @@ import com.example.destino.Livro;
 
 public class LivroForm {
     //int String String int Date String int
-    public void cadastrarlivro(int id_livro, String nome, String autor, int quant, java.util.Date data, String cpf, int id_area){
-        Livro livro = new Livro(id_livro, nome, autor, quant, data, cpf, id_area);
+    public void cadastrarlivro(int id_livro, String nome, String autor, java.util.Date data, int quant, String cpfFunc, String nomeArea){
+        Livro livro = new Livro(id_livro, nome, autor, data, quant, cpfFunc, nomeArea);
         new LivroDao().adicionarLivro(livro);
     }
 

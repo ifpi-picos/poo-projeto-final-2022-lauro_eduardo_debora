@@ -3,32 +3,32 @@ package com.example.destino;
 import java.util.Date;
 
 public class Livro{
+    private int id_livro;
     private String titulo;
     private String autor;
     private Date dataPublicacao;
     private int numCopias = 0;
-    private int id_area;
-    private int id_livro;
-    private String CPF;
+    private String cpfFunc;
+    private String area;
 
     //String String String int Date String int
 
-    public Livro(int idlivro,String titulo, String autor, int numCopias, Date dataPublicacao, String cpffuncionario, int idArea){
+    public Livro(int idlivro,String titulo, String autor, Date dataPublicacao, int numCopias, String cpffuncionario, String area){
+        this.id_livro = idlivro;
         this.titulo = titulo;
         this.autor = autor;
         this.dataPublicacao = dataPublicacao;
         this.numCopias = numCopias;
-        this.CPF = cpffuncionario;
-        this.id_livro = idlivro;
-        this.id_area = idArea;
+        this.cpfFunc = cpffuncionario;
+        this.area = area;
     }
 
     public String getTitulo(){
         return titulo;
     }
 
-    public String getCPFfuncionario(){
-        return CPF;
+    public String getCpfFunc() {
+        return cpfFunc;
     }
     
     public String getAutor() {
@@ -43,11 +43,11 @@ public class Livro{
         return numCopias;
     }
 
-    public int getIdarea() {
-        return id_area;
+    public String getArea() {
+        return area;
     }
 
-    public int getIdlivro() {
+    public int getId_livro() {
         return id_livro;
     }
 
