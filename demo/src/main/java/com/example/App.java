@@ -157,7 +157,7 @@ public class App
                                 }else if(option == 1){
                                     funcionario.alterarLivro();
                                 }else if(option == 2){
-                                    funcionario.removerLivro(livros);
+                                    funcionario.removerLivro();
                                 }else if(option == 3){
                                     funcionario.listarLivros(livros);
                                 }else if(option == 4){

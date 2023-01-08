@@ -33,6 +33,10 @@ public class LivroForm {
         new LivroDao().alterarNumCopiasLivro(titulo, autor, data, num);
     }
 
+    public void removerLivro(String titulo, String autor, Date data){
+        new LivroDao().deletarLivro(titulo, autor, data);
+    }
+
     public List<Livro> listarLivros(){
         List<Livro> livrosCadastrados = new LivroDao().buscarlivros();
         return livrosCadastrados;

@@ -45,6 +45,7 @@ public class Funcionario{
         return senha;
     }
 
+    /* Funcionalidades - Usuário */
     public void adicionarUsuario(String cpfFuncionario) throws ParseException{
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -156,41 +157,7 @@ public class Funcionario{
         new UsuarioForm().listarUsuarios();
     }
 
-    /* public void adicionarLivro(List<Livro> livros, Funcionario funcio) throws ParseException{
-
-        List<AreaConhecimento> area = new AreaConhecimentoForm().listarAreaConhecimento();
-        //new AreaConhecimentoForm().listarConhecimento();
-        Random geradorConta = new Random();
-        int num1 = geradorConta.nextInt(9);
-        int num2 = geradorConta.nextInt(9);
-        int num3 = geradorConta.nextInt(9);
-        int num4 = geradorConta.nextInt(9);
-
-        String id_livro = "" + num1 + num2 + num3 + num4;
-        Integer id_l = Integer.parseInt(id_livro);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String Nome_l = JOptionPane.showInputDialog("Nome do livro: ");
-        String autor_nome = JOptionPane.showInputDialog("Nome do autor do livro: ");
-        String data_l = JOptionPane.showInputDialog("Data de Nascimento: ");
-        String quant_l = JOptionPane.showInputDialog("Quantos livros estão sendo adicionados? ");
-        Integer quant = Integer.parseInt(quant_l);
-        String titulo = JOptionPane.showInputDialog("Título da área do livro: ");
-        String fu = funcio.getCPF();
-
-        Date data = formatter.parse(data_l);
-
-        int id;
-        for(AreaConhecimento are: area){
-            if(titulo.equals(are.gettitulo())){
-                 id = are.getId();
-                 new LivroForm().cadastrarlivro(id_l, Nome_l, autor_nome, quant, data, fu, id );
-            }
-        }
-
-        //int String String int Date String int
-        
-    } */
-
+    // Funcionalidades - Livro
     public void adicionarLivro(String cpfFunc) throws ParseException{
 
         new AreaConhecimentoForm().listarAreas();
@@ -223,19 +190,6 @@ public class Funcionario{
             }
         }
     }
-
-    /* public void alterarLivro(List<Livro> livros){
-        String Nome = JOptionPane.showInputDialog("Nome do livro: ");
-        String autornome = JOptionPane.showInputDialog("Nome do autor do livro: ");
-       // String Data = JOptionPane.showInputDialog("Data de publicação: ");
-        for (Livro livro : livros){
-            if(Nome.equals(livro.getTitulo()) && autornome.equals(livro.getAutor())){
-                livro.setTitulo(Nome);
-                livro.setAutor(autornome);
-                //livro.setData(null);""
-            }
-        }
-    } */
 
     public void alterarLivro() throws ParseException{
 
@@ -271,25 +225,29 @@ public class Funcionario{
                     new LivroForm().alterarTitulo(nome, newNome, autor, dataForm);
                     JOptionPane.showMessageDialog(null,"Título alterado com sucesso!");
                     nome = newNome;
+
                 }else if(opcaoSelecionad + 1 == 2){
                     String newAutor = JOptionPane.showInputDialog("Novo autor: ");
                     new LivroForm().alterarAutor(autor, nome, newAutor, dataForm);
                     JOptionPane.showMessageDialog(null,"Autor alterado com sucesso!");
                     autor = newAutor;
+
                 }else if(opcaoSelecionad + 1 == 3){
                     String newData = JOptionPane.showInputDialog("Nova data de publicação: ");
                     Date newDataForm = formatter.parse(newData);
                     new LivroForm().alterarDataPub(dataForm, nome, autor, newDataForm);
                     JOptionPane.showMessageDialog(null,"Data de publicação alterada com sucesso!");
                     dataForm = newDataForm;
+
                 }else if(opcaoSelecionad + 1 == 4){
                     String newCopias = JOptionPane.showInputDialog("Nova número de cópias: ");
                     Integer copias = Integer.parseInt(newCopias);
                     new LivroForm().alterarNumCop(nome, autor, dataForm, copias);
                     JOptionPane.showMessageDialog(null,"Número de cópias alterado com sucesso!");
+
                 }else if(opcaoSelecionad + 1 == 5){
                     break;
-            }
+                }
             }
 
         }else{
@@ -299,7 +257,7 @@ public class Funcionario{
     }
 
     // Removendo livro do sistema
-    public void removerLivro(List<Livro> livros){
+    /* public void removerLivro(List<Livro> livros){
         String Nome = JOptionPane.showInputDialog("Nome do livro: ");
         String autornome = JOptionPane.showInputDialog("Nome do autor do livro: ");
         for (Livro livro : livros){
@@ -308,6 +266,24 @@ public class Funcionario{
                 JOptionPane.showMessageDialog(null, "Livro removido com sucesso.");
             }
         }
+    } */
+
+    public void removerLivro() throws ParseException{
+
+        String titulo = JOptionPane.showInputDialog("Nome do livro: ");
+        String autor = JOptionPane.showInputDialog("Nome do autor do livro: ");
+        String data = JOptionPane.showInputDialog("Data de publicação: ");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataForm = formatter.parse(data);
+
+        if(new LivroForm().encontrarLivro(titulo, autor, dataForm)){
+            new LivroForm().removerLivro(titulo, autor, dataForm);
+            JOptionPane.showMessageDialog(null, "Livro removido com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Livro não cadastrado!");
+        }  
+
     }
 
     public void listarLivros(List<Livro> livros){

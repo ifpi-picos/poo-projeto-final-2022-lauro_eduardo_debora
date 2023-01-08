@@ -94,6 +94,16 @@ public class LivroDao {
         }
     }
 
+    public void deletarLivro(String titulo, String autor, Date dataPubli){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "delete from livros where livros.titulo = '"+titulo+"' and autor = '"+autor+"' and data_publicacao = '"+dataPubli+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Livro> buscarlivros(){
         String sql = "select id_livro, titulo, autor, data_publicacao, num_copias, cpf_funcionario, area from usuarios";
         List<Livro> livros = new ArrayList<>();
