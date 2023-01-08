@@ -16,7 +16,7 @@ public class FuncionarioForm {
         return new FuncionarioDao().buscarFuncionario(cpf, senha);
     }
 
-    public List<Funcionario> listarUsuarios(){
+    public List<Funcionario> listarFuncionarios(){
         List<Funcionario> funcionariosCadastrados = new FuncionarioDao().buscarFuncionaio();
         return funcionariosCadastrados;
         /*for(int i = 0; i < funcionariosCadastrados.size(); i++){

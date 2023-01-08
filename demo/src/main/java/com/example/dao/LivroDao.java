@@ -1,7 +1,7 @@
 package com.example.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -54,6 +54,43 @@ public class LivroDao {
             e.printStackTrace();
 
             return false;
+        }
+    }
+
+    public void alterarTituloLivro(String antTitulo, String titulo, String autor, Date dataPublicacao){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update livros set titulo = '"+titulo+"' where titulo = '"+antTitulo+"' and autor = '"+autor+"' and data_publicacao = '"+dataPublicacao+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void alterarAutorLivro(String antAutor, String titulo, String autor, Date dataPublicacao){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update livros set autor = '"+autor+"' where titulo = '"+titulo+"' and autor = '"+antAutor+"' and data_publicacao = '"+dataPublicacao+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void alterarDataLivro(Date antData, String titulo, String autor, Date dataPublicacao){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update livros set data_publicacao = '"+dataPublicacao+"' where titulo = '"+titulo+"' and autor = '"+autor+"' and data_publicacao = '"+antData+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void alterarNumCopiasLivro(String titulo, String autor, Date dataPublicacao, int num){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "update livros set num_copias = '"+num+"' where titulo = '"+titulo+"' and autor = '"+autor+"' and data_publicacao = '"+dataPublicacao+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

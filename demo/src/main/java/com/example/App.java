@@ -118,7 +118,7 @@ public class App
         
         String entrar = JOptionPane.showInputDialog("CPF do funcionário: ");
         String senha = JOptionPane.showInputDialog("Senha: ");
-        List<Funcionario> funcionarios = new FuncionarioForm().listarUsuarios();
+        List<Funcionario> funcionarios = new FuncionarioForm().listarFuncionarios();
         
         if(new FuncionarioForm().encontrarFuncionario(entrar, senha)){
             System.out.println("Passou do banco");
@@ -155,7 +155,7 @@ public class App
                                 if(option == 0){
                                     funcionario.adicionarLivro(entrar);
                                 }else if(option == 1){
-                                    funcionario.alterarLivro(livros);
+                                    funcionario.alterarLivro();
                                 }else if(option == 2){
                                     funcionario.removerLivro(livros);
                                 }else if(option == 3){

@@ -1,6 +1,6 @@
 package com.example.visao;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.example.dao.LivroDao;
@@ -13,8 +13,24 @@ public class LivroForm {
         new LivroDao().adicionarLivro(livro);
     }
 
-    public boolean encontrarLivro(String nome, Date data, String autor){
+    public boolean encontrarLivro(String nome, String autor, Date data){
         return new LivroDao().buscarLivro(nome, autor, data);
+    }
+
+    public void alterarTitulo(String antTitulo, String titulo, String autor, Date data){
+        new LivroDao().alterarTituloLivro(antTitulo, titulo, autor, data);
+    }
+
+    public void alterarAutor(String antAutor, String titulo, String autor, Date data){
+        new LivroDao().alterarAutorLivro(antAutor, titulo, autor, data);
+    }
+
+    public void alterarDataPub(Date antData, String titulo, String autor, Date data){
+        new LivroDao().alterarDataLivro(antData, titulo, autor, data);
+    }
+
+    public void alterarNumCop(String titulo, String autor, Date data, int num){
+        new LivroDao().alterarNumCopiasLivro(titulo, autor, data, num);
     }
 
     public List<Livro> listarLivros(){
