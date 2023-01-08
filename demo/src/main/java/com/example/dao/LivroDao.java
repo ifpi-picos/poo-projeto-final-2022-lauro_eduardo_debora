@@ -105,7 +105,7 @@ public class LivroDao {
     }
 
     public List<Livro> buscarlivros(){
-        String sql = "select id_livro, titulo, autor, data_publicacao, num_copias, cpf_funcionario, area from usuarios";
+        String sql = "select id_livro, titulo, autor, data_publicacao, num_copias, cpf_funcionario, area from livros";
         List<Livro> livros = new ArrayList<>();
 
         try {

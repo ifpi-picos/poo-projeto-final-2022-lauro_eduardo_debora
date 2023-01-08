@@ -257,17 +257,6 @@ public class Funcionario{
     }
 
     // Removendo livro do sistema
-    /* public void removerLivro(List<Livro> livros){
-        String Nome = JOptionPane.showInputDialog("Nome do livro: ");
-        String autornome = JOptionPane.showInputDialog("Nome do autor do livro: ");
-        for (Livro livro : livros){
-            if(Nome.equals(livro.getTitulo()) && autornome.equals(livro.getAutor())){
-                livros.remove(livro);
-                JOptionPane.showMessageDialog(null, "Livro removido com sucesso.");
-            }
-        }
-    } */
-
     public void removerLivro() throws ParseException{
 
         String titulo = JOptionPane.showInputDialog("Nome do livro: ");
@@ -287,19 +276,10 @@ public class Funcionario{
     }
 
     public void listarLivros(List<Livro> livros){
-        
-        liv.clear();
-        for(Livro livro : livros){
-            liv.add("Título: " + livro.getTitulo() + ", Autor: "+ livro.getAutor() + ", Cópias: " + livro.getNumCopias() + ".");
-        }
-
-        String nomes = "";
-		for(String nome : liv){
-			nomes += nome + "\n";
-		}
-		JOptionPane.showMessageDialog(null, nomes);
+        new LivroForm().listarLivros();
     }
 
+    /* Funcão - Empréstimo */
     public void emprestimo(List<Usuario> usuarios, List<Livro> livros){
 
         List<String> users = new ArrayList<>();

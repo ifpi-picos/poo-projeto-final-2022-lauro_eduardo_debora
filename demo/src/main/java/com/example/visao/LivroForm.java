@@ -1,7 +1,10 @@
 package com.example.visao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import com.example.dao.LivroDao;
 import com.example.destino.Livro;
@@ -37,12 +40,24 @@ public class LivroForm {
         new LivroDao().deletarLivro(titulo, autor, data);
     }
 
-    public List<Livro> listarLivros(){
+    public void listarLivros(){
         List<Livro> livrosCadastrados = new LivroDao().buscarlivros();
-        return livrosCadastrados;
-        /*for(int i = 0; i < usuariosCadastrados.size(); i++){
-            System.out.println(usuariosCadastrados.get(i).getNome() + "-" + usuariosCadastrados.get(i).getEmail());
-        }*/
+        List<String> listLivros = new ArrayList<>();
+        
+        for(int i = 0; i < livrosCadastrados.size(); i++){
+            listLivros.add("ID: " + livrosCadastrados.get(i).getId_livro() + ", " + "Título: " + livrosCadastrados.get(i).getTitulo() + ", " + "Autor: " + livrosCadastrados.get(i).getAutor() + ", " + "Publicação: " + livrosCadastrados.get(i).getDataPublicacao() + ", " + "Cópias: " + livrosCadastrados.get(i).getNumCopias() + ", " + "cpfFuncionario: " + livrosCadastrados.get(i).getCpfFunc() + ", " + "Área: " + livrosCadastrados.get(i).getArea());
+        }
+
+        String livros = "";
+        for(String item : listLivros){
+            livros += item + "\n";
+        }
+
+        if(livros == ""){
+            JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado!");
+        }else{
+            JOptionPane.showMessageDialog(null, livros);
+        }
     }
 
 }
