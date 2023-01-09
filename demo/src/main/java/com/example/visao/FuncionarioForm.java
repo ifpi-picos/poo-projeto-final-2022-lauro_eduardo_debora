@@ -24,8 +24,8 @@ public class FuncionarioForm {
         }*/
     }
 
-    public void removefuncionario(String cpf, String nome, String senha){
-        new FuncionarioDao().removerFuncionario(cpf, senha, nome);
+    public void removefuncionario(String cpf, String senha){
+        new FuncionarioDao().removerFuncionario(cpf, senha);
     }
 
 }

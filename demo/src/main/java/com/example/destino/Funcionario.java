@@ -280,61 +280,9 @@ public class Funcionario{
     }
 
     /* Funcão - Empréstimo */
-    public void emprestimo(List<Usuario> usuarios, List<Livro> livros){
+    public void emprestimo(String CPF){
 
-        List<String> users = new ArrayList<>();
-        List<String> books = new ArrayList<>(); 
-
-        for(Usuario user : usuarios){
-            users.add(user.getCpf() + user.getSenha());
-        }
-        for(Livro book : livros){
-            books.add(book.getTitulo() + book.getAutor());
-        }
-
-
-        String cpf = JOptionPane.showInputDialog("CPF do usuário: ");
-        String senha = JOptionPane.showInputDialog("Senha do usuário: ");
-
-        if(users.contains(cpf+senha)){
-
-            for(Usuario uso : usuarios){
-
-                if(cpf.equals(uso.getCpf()) && senha.equals(uso.getSenha())){
-                    String nome_l = JOptionPane.showInputDialog("Nome do livro: ");
-                    String autor_l = JOptionPane.showInputDialog("Nome do autor do livro: ");
-
-                    if(books.contains(nome_l+autor_l)){
-
-                        for(Livro livro : livros){
-
-                            if(nome_l.equals(livro.getTitulo()) && autor_l.equals(livro.getAutor())){
-
-                                if(livro.getNumCopias() > 0){
-                                    //LocalDateTime now = LocalDateTime.now();
-                                    String valor = JOptionPane.showInputDialog("Qual o valor do empréstimo? ");
-                                    String tempo_com_livro = JOptionPane.showInputDialog("Quanto tempo vai ficar com o livro? ");
-                                    Float valor_e = Float.parseFloat(valor);
-                                    Integer tempo = Integer.parseInt(tempo_com_livro);
-                                    Emprestimo empres = new Emprestimo(/*now,*/livro,uso,valor_e,tempo);
-                                    /* uso.setEmprestimo(empres); */
-                                    livro.setNumCopias(livro.getNumCopias() - 1);
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Livro sem estoque!");
-                                }
-                            }
-                        }
-
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Livro não cadastrado!");
-                    }
-                    
-
-                }
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
-        }
+        
     }
 
     public void cadastrarAreadeconhecimento(){
@@ -368,3 +316,5 @@ public class Funcionario{
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 livrosArray, null);
         System.out.println(escolhido); */
+
+/* */

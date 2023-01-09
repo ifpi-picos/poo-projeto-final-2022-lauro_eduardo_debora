@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Emprestimo{
     private Date dataEmp;
-    private Livro livroEmp;
-    private Usuario usuarioEmp;
+    private int livroEmp;
+    private String usuarioEmp;
     private float valorEmp;
     private int tempoEmp;
 
-    public Emprestimo(/*Date dataEmp,*/ Livro livroEmp, Usuario usuarioEmp, float valorEmp, int tempoEmp){
-        //this.dataEmp = dataEmp;
+    public Emprestimo(Date dataEm, int livroEmp, String usuarioEmp, float valorEmp, int tempoEmp){
+        this.dataEmp = dataEm;
         this.livroEmp = livroEmp;
         this.usuarioEmp = usuarioEmp;
         this.valorEmp = valorEmp;
@@ -21,11 +21,11 @@ public class Emprestimo{
         return dataEmp;
     }
 
-    public Livro getLivroEmp() {
+    public int getLivroEmp() {
         return livroEmp;
     }
 
-    public Usuario getUsuarioEmp() {
+    public String getUsuarioEmp() {
         return usuarioEmp;
     }
 

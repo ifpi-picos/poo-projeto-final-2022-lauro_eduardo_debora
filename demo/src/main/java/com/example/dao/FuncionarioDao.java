@@ -76,10 +76,10 @@ public class FuncionarioDao {
         }
     }
 
-    public void removerFuncionario(String CPF, String senha, String nome){
+    public void removerFuncionario(String CPF, String senha){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "delete from funcionarios where funcionarios.cpf = '"+CPF+"' and senha = '"+senha+"' and nome = '"+nome+"'";
+            String sql = "delete from funcionarios where funcionarios.cpf = '"+CPF+"' and senha = '"+senha+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();

@@ -158,7 +158,7 @@ public class App
                                 }
                             }
                         }else if (menu.get(menuSelecionado) == 3) {
-                            funcionario.emprestimo(usuarios, livros);
+                            //funcionario.emprestimo(usuarios, livros);
                         }
                     }
                 }else{
@@ -192,12 +192,11 @@ public class App
 
                     new FuncionarioForm().cadastrarFuncionario(cpf_f,nome_f,senha_f);
                 }else if (menu_interativo.get(menuSelecionado) == 2){
-                    String nome = JOptionPane.showInputDialog("Nome: ");
                     String cpf = JOptionPane.showInputDialog("CPF: ");
                     String senha = JOptionPane.showInputDialog("Senha: ");
 
                     if(new FuncionarioForm().encontrarFuncionario(cpf, senha)){
-                        new FuncionarioDao().removerFuncionario(cpf, senha, nome);
+                        new FuncionarioDao().removerFuncionario(cpf, senha);
                     }else{
                         JOptionPane.showMessageDialog(null, "Funcionário não cadastrado!");
                     }
