@@ -75,4 +75,14 @@ public class FuncionarioDao {
             return null;
         }
     }
+
+    public void removerFuncionario(String CPF, String senha, String nome){
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "delete from funcionarios where funcionarios.cpf = '"+CPF+"' and senha = '"+senha+"' and nome = '"+nome+"'";
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

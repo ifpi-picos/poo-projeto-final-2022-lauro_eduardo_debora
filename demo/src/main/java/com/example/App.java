@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.example.dao.FuncionarioDao;
 //import com.example.dao.UsuarioDao;
 import com.example.destino.Funcionario;
 import com.example.destino.Livro;
@@ -189,7 +190,17 @@ public class App
                     String cpf_f = JOptionPane.showInputDialog("Seu CPF: ");
                     String senha_f = JOptionPane.showInputDialog("Crie uma senha: ");
 
-                    new FuncionarioForm().cadastrarFuncionario(cpf_f, nome_f, senha_f);
+                    new FuncionarioForm().cadastrarFuncionario(cpf_f,nome_f,senha_f);
+                }else if (menu_interativo.get(menuSelecionado) == 2){
+                    String nome = JOptionPane.showInputDialog("Nome: ");
+                    String cpf = JOptionPane.showInputDialog("CPF: ");
+                    String senha = JOptionPane.showInputDialog("Senha: ");
+
+                    if(new FuncionarioForm().encontrarFuncionario(cpf, senha)){
+                        new FuncionarioDao().removerFuncionario(cpf, senha, nome);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Funcionário não cadastrado!");
+                    }
                 }
            
         }
@@ -202,7 +213,7 @@ public class App
     public static int menuAdmin(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Cadastrar funcionário \n2. Gerir \n3. Sair",
+                "1. Cadastrar funcionário \n2. Remover funcionário \n3. Sair",
                 "Menu do Admin",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
