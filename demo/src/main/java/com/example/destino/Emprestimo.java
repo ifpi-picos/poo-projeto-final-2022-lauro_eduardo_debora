@@ -3,18 +3,23 @@ package com.example.destino;
 import java.util.Date;
 
 public class Emprestimo{
+    private int idEmprestimo;
+    private int tempoEmp;
+    private double valorEmp;
     private Date dataEmp;
     private int livroEmp;
     private String usuarioEmp;
-    private float valorEmp;
-    private int tempoEmp;
 
-    public Emprestimo(Date dataEm, int livroEmp, String usuarioEmp, float valorEmp, int tempoEmp){
+    public Emprestimo(int tempoEmp, double valorEmp, Date dataEm, int livroEmp, String usuarioEmp){
+        this.tempoEmp = tempoEmp;
+        this.valorEmp = valorEmp;
         this.dataEmp = dataEm;
         this.livroEmp = livroEmp;
-        this.usuarioEmp = usuarioEmp;
-        this.valorEmp = valorEmp;
-        this.tempoEmp = tempoEmp;
+        this.usuarioEmp = usuarioEmp;  
+    }
+
+    public int getIdEmprestimo() {
+        return idEmprestimo;
     }
 
     public Date getDataEmp() {
@@ -29,11 +34,11 @@ public class Emprestimo{
         return usuarioEmp;
     }
 
-    public float getValorEmp() {
+    public double getValorEmp() {
         return valorEmp;
     }
 
-    public float getTempoEmp() {
+    public int getTempoEmp() {
         return tempoEmp;
     }
 }

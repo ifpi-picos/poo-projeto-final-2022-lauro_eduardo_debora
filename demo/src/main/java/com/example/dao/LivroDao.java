@@ -57,6 +57,36 @@ public class LivroDao {
         }
     }
 
+    public int buscarIdLivro(String titulo, String autor, Date datapublica){
+
+        String sql = "select id_livro from livros where livros.titulo = '"+ titulo +"' and livros.autor = '"+ autor +"' and livros.data_publicacao = '"+ datapublica +"' ";
+
+        System.out.println("Titulo: " + titulo);
+        System.out.println("Autor: " + autor);
+        System.out.println("Data: " + datapublica);
+
+        try { 
+            Statement stm = conexao.createStatement();
+            ResultSet result = stm.executeQuery(sql);
+
+            // System.out.println("result: " + result);
+
+            if(result.next()){
+                System.out.println("Entrou no true");
+                System.out.println(result.getInt("id_livro"));
+                return result.getInt("id_livro");
+            }else{
+                System.out.println("Entrou no false");
+                return 0;
+            } 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return 0;
+        }
+    }
+
     public void alterarTituloLivro(String antTitulo, String titulo, String autor, Date dataPublicacao){
         try {
             Statement stm = conexao.createStatement();

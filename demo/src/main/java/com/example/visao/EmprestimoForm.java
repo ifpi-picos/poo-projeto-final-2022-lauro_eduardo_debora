@@ -1,13 +1,13 @@
 package com.example.visao;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.example.dao.EmprestimoDao;
 import com.example.destino.Emprestimo;
 
 public class EmprestimoForm {
-    public void cadastrarEmprestimo(Date data_emp, int id_livro, String CPF_usuario, float valor, int tempo_emp){
-        Emprestimo emprestimo = new Emprestimo(data_emp, id_livro, CPF_usuario, valor, tempo_emp);
+    public void cadastrarEmprestimo(Integer tempo_emp, double valor, Date data_emp, int id_livro, String CPF_usuario){
+        Emprestimo emprestimo = new Emprestimo(tempo_emp, valor, data_emp, id_livro, CPF_usuario);
         new EmprestimoDao().adicionarEmprestimo(emprestimo);
     }
 

@@ -13,8 +13,10 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 import com.example.dao.AreadeConhecimentoDao;
+import com.example.dao.LivroDao;
 import com.example.dao.UsuarioDao;
 import com.example.visao.AreaConhecimentoForm;
+import com.example.visao.EmprestimoForm;
 import com.example.visao.EnderecoForm;
 import com.example.visao.LivroForm;
 import com.example.visao.UsuarioForm;
@@ -279,9 +281,48 @@ public class Funcionario{
         new LivroForm().listarLivros();
     }
 
-    /* Funcão - Empréstimo */
-    public void emprestimo(String CPF){
+    /* Funcões - Empréstimo */
+    public void realizarEmprestimo(String CPF) throws ParseException{
 
+        String nomeLivro = JOptionPane.showInputDialog("Nome do livro: ");
+        String nomeAutor = JOptionPane.showInputDialog("Nome do autor do livro: ");
+        String dataPub = JOptionPane.showInputDialog("Data de publicação: ");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataPubForm = formatter.parse(dataPub);
+
+        if(new LivroForm().encontrarLivro(nomeLivro, nomeAutor, dataPubForm)){
+
+            // Dados livro
+            String tempoEmp = JOptionPane.showInputDialog("Tempo de empréstimo: ");
+            String valorEmp = JOptionPane.showInputDialog("Valor empréstimo: ");
+            int idLivro = new LivroDao().buscarIdLivro(nomeLivro, nomeAutor, dataPubForm);
+
+            int tempoEmpForm = Integer.parseInt(tempoEmp);
+            System.out.println(tempoEmpForm);
+
+            double valorEmpForm = Double.parseDouble(valorEmp);
+            System.out.println(valorEmpForm);
+
+
+            String cpfUsuario = JOptionPane.showInputDialog("CPF do usuário: ");
+            if(new UsuarioForm().encontrarUsuario(cpfUsuario)){
+
+                // Adquirindo data atual e formatando
+                Date date = new Date(System.currentTimeMillis());
+                String dataS = formatter.format(date);
+                Date dataAtual = formatter.parse(dataS);
+
+                new EmprestimoForm().cadastrarEmprestimo(tempoEmpForm, valorEmpForm, dataAtual, idLivro, cpfUsuario);
+
+                JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Livro não cadastrado!");
+        }
         
     }
 
@@ -293,28 +334,9 @@ public class Funcionario{
         }else{
             String descricao = JOptionPane.showInputDialog("Escreva a descrição dessa área");
 
-            /* Random geradorConta = new Random();
-            int num1 = geradorConta.nextInt(9);
-            int num2 = geradorConta.nextInt(9);
-            int num3 = geradorConta.nextInt(9);
-            int num4 = geradorConta.nextInt(9);
-
-            String id_area = "" + num1 + num2 + num3 + num4;
-            Integer id = Integer.parseInt(id_area); */
-
             new AreaConhecimentoForm().cadastrarAreadeConhecimento(titulo, descricao);
 
             JOptionPane.showMessageDialog(null, "Área cadastrada com sucesso!");
         }
     }
 }
-
-/* Object[] livrosArray = liv.toArray();
-        int escolhido = JOptionPane.showOptionDialog(null,
-                "Livros:",
-                "Menu",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                livrosArray, null);
-        System.out.println(escolhido); */
-
-/* */
