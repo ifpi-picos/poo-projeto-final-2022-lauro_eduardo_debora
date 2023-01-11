@@ -326,6 +326,11 @@ public class Funcionario{
         
     }
 
+    public void removerEmprestimo(){
+        String cpf = JOptionPane.showInputDialog("Qual o CPF do usuário?");
+        new EmprestimoForm().removerEmprestimo(cpf);
+    }
+
     public void cadastrarAreadeconhecimento(){
         String titulo = JOptionPane.showInputDialog("Qual o título?");
 

@@ -63,7 +63,7 @@ public class App
     public static int menuFuncOpt(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Opções usuários \n2. Opções livros \n3. Empréstimo \n4. Sair",
+                "1. Opções usuários \n2. Opções livros \n3. Empréstimo \n4 Cancelar Empréstimo\n5. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -114,10 +114,10 @@ public class App
         List<Funcionario> funcionarios = new FuncionarioForm().listarFuncionarios();
         
         if(new FuncionarioForm().encontrarFuncionario(entrar, senha)){
-            System.out.println("Passou do banco");
+            //System.out.println("Passou do banco");
             for(Funcionario funcionario : funcionarios){
                 if(entrar.equals(funcionario.getCPF()) && senha.equals(funcionario.getSenha())){
-                    System.out.println("Passou da lista");
+                    //System.out.println("Passou da lista");
                     List<Integer> menu = new ArrayList<>();
                     menu.add(1);
                     menu.add(2);
@@ -125,7 +125,7 @@ public class App
                     menu.add(4);
         
                     int menuSelecionado = 1;
-                    while (menu.get(menuSelecionado) != 4) {
+                    while (menu.get(menuSelecionado) != 5) {
                         menuSelecionado = menuFuncOpt(menu);
                         if (menu.get(menuSelecionado) == 1) {
                             int option = 0;
@@ -161,6 +161,8 @@ public class App
                             }
                         }else if (menu.get(menuSelecionado) == 3) {
                             funcionario.realizarEmprestimo(senha);
+                        }else if(menu.get(menuSelecionado) == 4){
+                            funcionario.removerEmprestimo();
                         }
                     }
                 }else{
