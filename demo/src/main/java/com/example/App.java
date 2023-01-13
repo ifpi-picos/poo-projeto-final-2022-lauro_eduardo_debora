@@ -63,7 +63,7 @@ public class App
     public static int menuFuncOpt(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Opções usuários \n2. Opções livros \n3. Empréstimo \n4 Cancelar Empréstimo\n5. Sair",
+                "1. Opções usuários \n2. Opções livros \n3. Empréstimo \n4. Cancelar Empréstimo\n5. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -114,20 +114,24 @@ public class App
         List<Funcionario> funcionarios = new FuncionarioForm().listarFuncionarios();
         
         if(new FuncionarioForm().encontrarFuncionario(entrar, senha)){
-            //System.out.println("Passou do banco");
+            System.out.println("Passou do banco");
+            System.out.println(funcionarios);
+
             for(Funcionario funcionario : funcionarios){
                 if(entrar.equals(funcionario.getCPF()) && senha.equals(funcionario.getSenha())){
-                    //System.out.println("Passou da lista");
+                    System.out.println("Passou da lista");
                     List<Integer> menu = new ArrayList<>();
                     menu.add(1);
                     menu.add(2);
                     menu.add(3);
                     menu.add(4);
+                    menu.add(5);
         
-                    int menuSelecionado = 1;
+                    int menuSelecionado = 0;
                     while (menu.get(menuSelecionado) != 5) {
                         menuSelecionado = menuFuncOpt(menu);
-                        if (menu.get(menuSelecionado) == 1) {
+                        if (menuSelecionado+1 == 1) {
+                            System.out.println("Entrada: " + menuSelecionado);
                             int option = 0;
                             while(option != 4){
                                 option = menuFuncUsuario();
@@ -141,7 +145,7 @@ public class App
                                     funcionario.listarUsuarios();
                                 }
                             }
-                        } else if (menu.get(menuSelecionado) == 2) {
+                        } else if (menuSelecionado+1 == 2) {
                             int option = 0;
                             while(option != 6){
                                 option = menuFuncLivro();
@@ -159,9 +163,9 @@ public class App
                                   System.out.println("Remover area");
                                 }
                             }
-                        }else if (menu.get(menuSelecionado) == 3) {
+                        }else if (menuSelecionado+1 == 3) {
                             funcionario.realizarEmprestimo(senha);
-                        }else if(menu.get(menuSelecionado) == 4){
+                        }else if(menuSelecionado+1 == 4){
                             funcionario.removerEmprestimo();
                         }
                     }

@@ -20,18 +20,18 @@ public class UsuarioDao {
     public void adicionarUsuario(Usuario usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "insert into usuarios (cpf, nome, email, senha, datanascimento, id_endereco, cpf_funcionario) values ('"+usuario.getCpf()+"', '"+usuario.getNome()+"', '"+usuario.getEmail()+"', '"+usuario.getSenha()+"', '"+usuario.getDataNasc()+"', '"+usuario.getIdEndereco()+"', '"+usuario.getCpfFuncionario()+"')";
+            String sql = "insert into usuarios (cpf_usuario, nome, email, senha, datanascimento, id_endereco, cpf_funcionario) values ('"+usuario.getCpf()+"', '"+usuario.getNome()+"', '"+usuario.getEmail()+"', '"+usuario.getSenha()+"', '"+usuario.getDataNasc()+"', '"+usuario.getIdEndereco()+"', '"+usuario.getCpfFuncionario()+"')";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public boolean buscarUsuario(String cpf){
+    public boolean buscarUsuario(String cpf_usuario){
 
-        String sql = "select cpf from usuarios where usuarios.cpf = '"+cpf+"' ";
+        String sql = "select cpf_usuario from usuarios where usuarios.cpf_usuario = '"+cpf_usuario+"' ";
 
-        System.out.println("CPF: " + cpf);
+        System.out.println("cpf_usuario: " + cpf_usuario);
 
         try { 
             Statement stm = conexao.createStatement();
@@ -54,60 +54,60 @@ public class UsuarioDao {
         }
     }
 
-    /* public void alterarUsuario(String nome, String email, String senha, Date dataNascimento, String cpf){
+    /* public void alterarUsuario(String nome, String email, String senha, Date dataNascimento, String cpf_usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "update usuarios set nome = '"+nome+"', email = '"+email+"', senha = '"+senha+"', datanascimento = '"+dataNascimento+"' where cpf = '"+cpf+"'";
+            String sql = "update usuarios set nome = '"+nome+"', email = '"+email+"', senha = '"+senha+"', datanascimento = '"+dataNascimento+"' where cpf_usuario = '"+cpf_usuario+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
     } */
 
-    public void alterarNomeUsuario(String nome, String cpf){
+    public void alterarNomeUsuario(String nome, String cpf_usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "update usuarios set nome = '"+nome+"' where cpf = '"+cpf+"'";
+            String sql = "update usuarios set nome = '"+nome+"' where cpf_usuario = '"+cpf_usuario+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void alterarEmailUsuario(String email, String cpf){
+    public void alterarEmailUsuario(String email, String cpf_usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "update usuarios set email = '"+email+"' where cpf = '"+cpf+"'";
+            String sql = "update usuarios set email = '"+email+"' where cpf_usuario = '"+cpf_usuario+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void alterarSenhaUsuario(String senha, String cpf){
+    public void alterarSenhaUsuario(String senha, String cpf_usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "update usuarios set senha = '"+senha+"' where cpf = '"+cpf+"'";
+            String sql = "update usuarios set senha = '"+senha+"' where cpf_usuario = '"+cpf_usuario+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void alterarDataUsuario(String data, String cpf){
+    public void alterarDataUsuario(String data, String cpf_usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "update usuarios set datanascimento = '"+data+"' where cpf = '"+cpf+"'";
+            String sql = "update usuarios set datanascimento = '"+data+"' where cpf_usuario = '"+cpf_usuario+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void deletarUsuario(String cpf){
+    public void deletarUsuario(String cpf_usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "delete from usuarios where usuarios.cpf = '"+cpf+"'";
+            String sql = "delete from usuarios where usuarios.cpf_usuario = '"+cpf_usuario+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,7 +115,7 @@ public class UsuarioDao {
     }
 
     public List<Usuario> buscarUsuarios(){
-        String sql = "select cpf, nome, email, senha, datanascimento, id_endereco, cpf_funcionario from usuarios";
+        String sql = "select cpf_usuario, nome, email, senha, datanascimento, id_endereco, cpf_funcionario from usuarios";
         List<Usuario> usuarios = new ArrayList<>();
 
         try {
@@ -123,7 +123,7 @@ public class UsuarioDao {
             ResultSet result = stm.executeQuery(sql);
 
             while(result.next()){;
-                usuarios.add(new Usuario(result.getString("cpf"), result.getString("nome"), result.getString("email"), result.getString("senha"), result.getDate("datanascimento"), result.getString("id_endereco"), result.getString("cpf_funcionario")));
+                usuarios.add(new Usuario(result.getString("cpf_usuario"), result.getString("nome"), result.getString("email"), result.getString("senha"), result.getDate("datanascimento"), result.getString("id_endereco"), result.getString("cpf_funcionario")));
             }
 
             return usuarios;
