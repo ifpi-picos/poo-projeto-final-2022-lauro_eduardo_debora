@@ -57,7 +57,7 @@ public class EmprestimoDao {
     public void removerEmprestimo(String CPF_usuario){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "delete from funcionarios where emprestimos.cpf_usuario = '"+CPF_usuario+"'";
+            String sql = "delete from emprestimos where emprestimos.cpf_usuario = '"+CPF_usuario+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();

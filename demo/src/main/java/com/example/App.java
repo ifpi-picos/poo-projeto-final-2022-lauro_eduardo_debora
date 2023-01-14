@@ -96,10 +96,11 @@ public class App
                     menu.add(5);
                     menu.add(6);
                     menu.add(7);
+                    menu.add(8);
 
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar livro \n2. Alterar livro \n3. Remover livro \n4. Listar livros \n5. Adicionar área de conhecimento \n6. Remover área de conhecimento \n7. Sair",
+                "1. Adicionar livro \n2. Alterar livro \n3. Remover livro \n4. Listar livros \n5. Adicionar área de conhecimento \n6. Remover área de conhecimento \n7. Listar áreas5 \n8. Sair",
                 "Opções livros",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -114,9 +115,7 @@ public class App
         List<Funcionario> funcionarios = new FuncionarioForm().listarFuncionarios();
         
         if(new FuncionarioForm().encontrarFuncionario(entrar, senha)){
-            System.out.println("Passou do banco");
-            System.out.println(funcionarios);
-
+            // System.out.println("Passou do banco");
             for(Funcionario funcionario : funcionarios){
                 if(entrar.equals(funcionario.getCPF()) && senha.equals(funcionario.getSenha())){
                     System.out.println("Passou da lista");
@@ -147,7 +146,7 @@ public class App
                             }
                         } else if (menuSelecionado+1 == 2) {
                             int option = 0;
-                            while(option != 6){
+                            while(option != 7){
                                 option = menuFuncLivro();
                                 if(option == 0){
                                     funcionario.adicionarLivro(entrar);
@@ -156,12 +155,15 @@ public class App
                                 }else if(option == 2){
                                     funcionario.removerLivro();
                                 }else if(option == 3){
-                                    funcionario.listarLivros(livros);
+                                    funcionario.listarLivros();
                                 }else if(option == 4){
-                                    funcionario.cadastrarAreadeconhecimento();
+                                    funcionario.cadastrarAreaDeConhecimento();
                                 }else if(option == 5){
-                                  System.out.println("Remover area");
+                                  funcionario.removerArea();
+                                }else if(option == 6){
+                                    funcionario.listarAreas();
                                 }
+                                
                             }
                         }else if (menuSelecionado+1 == 3) {
                             funcionario.realizarEmprestimo(senha);
@@ -194,17 +196,30 @@ public class App
             while (menu_interativo.get(menuSelecionado) != 3) {
                 menuSelecionado = menuAdmin(menu_interativo);
                 if (menu_interativo.get(menuSelecionado) == 1) {
-                    String nome_f = JOptionPane.showInputDialog("Seu nome: ");
                     String cpf_f = JOptionPane.showInputDialog("Seu CPF: ");
-                    String senha_f = JOptionPane.showInputDialog("Crie uma senha: ");
 
-                    new FuncionarioForm().cadastrarFuncionario(cpf_f,nome_f,senha_f);
+                    if(new FuncionarioDao().encontrarFuncionarioCPF(cpf_f)){
+                        JOptionPane.showMessageDialog(null, "Funcionário já cadastrado!");
+                    }else if(cpf_f.equals("")){
+                        JOptionPane.showMessageDialog(null, "Obrigatório adicionar CPF!");
+                    }else{
+                        String nome_f = JOptionPane.showInputDialog("Seu nome: ");
+                        String senha_f = JOptionPane.showInputDialog("Crie uma senha: ");
+
+                        new FuncionarioForm().cadastrarFuncionario(cpf_f,nome_f,senha_f);
+
+                        JOptionPane.showMessageDialog(null, "Funcionário adicionado com sucesso!");
+                    }
+                    
+
                 }else if (menu_interativo.get(menuSelecionado) == 2){
                     String cpf = JOptionPane.showInputDialog("CPF: ");
-                    String senha = JOptionPane.showInputDialog("Senha: ");
+                    // String senha = JOptionPane.showInputDialog("Senha: ");
 
-                    if(new FuncionarioForm().encontrarFuncionario(cpf, senha)){
-                        new FuncionarioDao().removerFuncionario(cpf, senha);
+                    if(new FuncionarioDao().encontrarFuncionarioCPF(cpf)){
+                        new FuncionarioDao().removerFuncionario(cpf);
+
+                        JOptionPane.showMessageDialog(null, "Funcionário removido com sucesso!");
                     }else{
                         JOptionPane.showMessageDialog(null, "Funcionário não cadastrado!");
                     }

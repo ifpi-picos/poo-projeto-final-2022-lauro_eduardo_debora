@@ -145,7 +145,7 @@ public class LivroDao {
             while(result.next()){;
                 livros.add(new Livro(result.getInt("id_livro"), result.getString("titulo"), result.getString("autor"), result.getDate("data_publicacao"), result.getInt("num_copias"), result.getString("cpf_funcionario"), result.getString("area")));
             }
-//String String String int Date String int 
+            
             return livros;
 
         } catch (Exception e) {

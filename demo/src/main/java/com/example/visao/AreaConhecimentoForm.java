@@ -14,11 +14,15 @@ public class AreaConhecimentoForm {
     
     public void cadastrarAreadeConhecimento(String titulo, String descricao){
         AreaConhecimento area = new AreaConhecimento(titulo, descricao);
-        new AreadeConhecimentoDao().adicionarUsuario(area);
+        new AreadeConhecimentoDao().adicionarArea(area);
     }
 
     public boolean encontrarAreaConhecimento(String titulo){
         return new AreadeConhecimentoDao().buscarArea(titulo);
+    }
+
+    public void removerArea(String titulo){
+        new AreadeConhecimentoDao().deletarArea(titulo);;
     }
 
     public boolean listarAreaConhecimento(){
@@ -32,13 +36,11 @@ public class AreaConhecimentoForm {
     }
 
     public void listarAreas(){
-        // List<Livro> livroCadastrados = new LivroDao().buscarlivros();
-
         List<AreaConhecimento> areasCadastradas = new AreadeConhecimentoDao().buscarAreas();
         List<String> listAreas = new ArrayList<>();
         
         for(int i = 0; i < areasCadastradas.size(); i++){
-            listAreas.add("Título: " + areasCadastradas.get(i).gettitulo() + ", " + "Descrição: " + areasCadastradas.get(i).gettitulo());
+            listAreas.add("Título: " + areasCadastradas.get(i).getTitulo() + ", " + "Descrição: " + areasCadastradas.get(i).getDescricao());
         }
 
         String areas = "Áreas cadastradas: \n";

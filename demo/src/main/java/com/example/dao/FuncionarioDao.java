@@ -29,7 +29,7 @@ public class FuncionarioDao {
 
     public boolean buscarFuncionario(String cpf, String senha){
 
-        String sql = "select cpf from funcionarios where funcionarios.cpf = '"+cpf+"' and funcionarios.senha = '"+senha+"'";
+        String sql = "select cpf from funcionarios where funcionarios.cpf = '"+cpf+"' and funcionarios.cpf = '"+senha+"'";
 
         System.out.println("CPF: \n" + cpf);
         System.out.println("Senha: " + senha);
@@ -55,7 +55,35 @@ public class FuncionarioDao {
         }
     }
 
-    public List<Funcionario> buscarFuncionaio(){
+    public boolean encontrarFuncionarioCPF(String cpf){
+
+        String sql = "select cpf from funcionarios where funcionarios.cpf = '"+cpf+"'";
+
+        System.out.println("CPF: \n" + cpf);
+
+        try { 
+            Statement stm = conexao.createStatement();
+            ResultSet result = stm.executeQuery(sql);
+
+            // System.out.println("result: " + result);
+
+            if(result.next()){
+                // System.out.println("Entrou no true");
+                return true;
+            }else{
+                // System.out.println("Entrou no false");
+                return false;
+            } 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return false;
+        }
+    }
+
+
+    public List<Funcionario> buscarFuncionarios(){
         String sql = "select cpf, nome, senha from funcionarios";
         List<Funcionario> funcionario = new ArrayList<>();
 
@@ -76,10 +104,10 @@ public class FuncionarioDao {
         }
     }
 
-    public void removerFuncionario(String CPF, String senha){
+    public void removerFuncionario(String CPF){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "delete from funcionarios where funcionarios.cpf = '"+CPF+"' and senha = '"+senha+"'";
+            String sql = "delete from funcionarios where funcionarios.cpf = '"+CPF+"'";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();

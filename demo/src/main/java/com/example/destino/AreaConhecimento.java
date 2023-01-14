@@ -12,11 +12,11 @@ public class AreaConhecimento{
         this.descricao = descri;
     }
 
-    public String gettitulo(){
+    public String getTitulo(){
         return titulo;
     }
 
-    public String getdescricao(){
+    public String getDescricao(){
         return descricao;
     }
 
