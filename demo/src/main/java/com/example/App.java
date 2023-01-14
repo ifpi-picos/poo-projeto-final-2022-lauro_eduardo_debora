@@ -63,7 +63,7 @@ public class App
     public static int menuFuncOpt(List<Integer> menu) {
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Opções usuários \n2. Opções livros \n3. Empréstimo \n4. Cancelar Empréstimo\n5. Sair",
+                "1. Opções usuários \n2. Opções livros \n3. Opções empréstimos \n4. Sair",
                 "Menu do Funcionário",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
@@ -100,8 +100,25 @@ public class App
 
         Object[] menusArray = menu.toArray();
         int opcaoSelecionad = JOptionPane.showOptionDialog(null,
-                "1. Adicionar livro \n2. Alterar livro \n3. Remover livro \n4. Listar livros \n5. Adicionar área de conhecimento \n6. Remover área de conhecimento \n7. Listar áreas5 \n8. Sair",
+                "1. Adicionar livro \n2. Alterar livro \n3. Remover livro \n4. Listar livros \n5. Adicionar área de conhecimento \n6. Remover área de conhecimento \n7. Listar áreas \n8. Sair",
                 "Opções livros",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                menusArray, null);
+        return opcaoSelecionad;
+    }
+
+    public static int menuFuncEmprestimo() {
+        List<Integer> menu = new ArrayList<>();
+                    menu.add(1);
+                    menu.add(2);
+                    menu.add(3);
+                    menu.add(4);
+                    
+
+        Object[] menusArray = menu.toArray();
+        int opcaoSelecionad = JOptionPane.showOptionDialog(null,
+                "1. Realizar empréstimo \n2. Cancelar empréstimo \n3. Ver empréstimos \n4. Sair",
+                "Opções empréstimos",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 menusArray, null);
         return opcaoSelecionad;
@@ -124,10 +141,9 @@ public class App
                     menu.add(2);
                     menu.add(3);
                     menu.add(4);
-                    menu.add(5);
         
                     int menuSelecionado = 0;
-                    while (menu.get(menuSelecionado) != 5) {
+                    while (menu.get(menuSelecionado) != 4) {
                         menuSelecionado = menuFuncOpt(menu);
                         if (menuSelecionado+1 == 1) {
                             System.out.println("Entrada: " + menuSelecionado);
@@ -166,9 +182,18 @@ public class App
                                 
                             }
                         }else if (menuSelecionado+1 == 3) {
-                            funcionario.realizarEmprestimo(senha);
-                        }else if(menuSelecionado+1 == 4){
-                            funcionario.removerEmprestimo();
+                            int option = 0;
+                            while(option != 3){
+                                option = menuFuncEmprestimo();
+                                if(option == 0){
+                                    funcionario.realizarEmprestimo(senha);
+                                }else if(option == 1){
+                                    funcionario.removerEmprestimo();
+                                }else if(option == 2){
+                                    funcionario.listarEmprestimos();
+                                }
+                            }
+                            
                         }
                     }
                 }else{

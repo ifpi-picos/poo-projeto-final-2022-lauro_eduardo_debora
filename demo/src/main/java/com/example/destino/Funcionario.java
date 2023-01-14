@@ -375,7 +375,16 @@ public class Funcionario{
                     String dataS = formatter.format(date);
                     Date dataAtual = formatter.parse(dataS);
 
-                    new EmprestimoForm().cadastrarEmprestimo(tempoEmpForm, valorEmpForm, dataAtual, idLivro, cpfUsuario);
+                    Random geradorConta = new Random();
+                    int num1 = geradorConta.nextInt(9);
+                    int num2 = geradorConta.nextInt(9);
+                    int num3 = geradorConta.nextInt(9);
+                    int num4 = geradorConta.nextInt(9);
+
+                    String id_emp = "" + num1 + num2 + num3 + num4;
+                    Integer id = Integer.parseInt(id_emp);
+
+                    new EmprestimoForm().cadastrarEmprestimo(id, tempoEmpForm, valorEmpForm, dataAtual, idLivro, cpfUsuario);
 
                     JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
                 }else{
@@ -400,6 +409,8 @@ public class Funcionario{
 
             if(new EmprestimoForm().encontrarEmprestimo(cpf)){
                 new EmprestimoForm().removerEmprestimo(cpf);
+
+                JOptionPane.showMessageDialog(null,"Empréstimo cancelado com sucesso!");
             }else{
                 JOptionPane.showMessageDialog(null,"Usuário sem empréstimo cadastrado!");
             }
@@ -408,5 +419,9 @@ public class Funcionario{
             JOptionPane.showMessageDialog(null,"Usuário não cadastrado!");
         }
         
+    }
+
+    public void listarEmprestimos(){
+        new EmprestimoForm().listarEmprestimos();
     }
 }

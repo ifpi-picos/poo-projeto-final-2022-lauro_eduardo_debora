@@ -19,9 +19,6 @@ public class FuncionarioForm {
     public List<Funcionario> listarFuncionarios(){
         List<Funcionario> funcionariosCadastrados = new FuncionarioDao().buscarFuncionarios();
         return funcionariosCadastrados;
-        /*for(int i = 0; i < funcionariosCadastrados.size(); i++){
-            System.out.println(funcionariosCadastrados.get(i).getNome());
-        }*/
     }
 
     public void removefuncionario(String cpf){

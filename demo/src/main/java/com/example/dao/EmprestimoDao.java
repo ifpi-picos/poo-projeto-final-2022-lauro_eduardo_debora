@@ -20,7 +20,7 @@ public class EmprestimoDao {
     public void adicionarEmprestimo(Emprestimo emprestimo){
         try {
             Statement stm = conexao.createStatement();
-            String sql = "insert into emprestimos (tempo_emp, valor_emp, data_emp, id_livro, cpf_usuario) values ('"+emprestimo.getTempoEmp()+"','"+emprestimo.getValorEmp()+"', '"+emprestimo.getDataEmp()+"','"+emprestimo.getLivroEmp()+"', '"+emprestimo.getUsuarioEmp()+"')";
+            String sql = "insert into emprestimos (id_emprestimo, tempo_emp, valor_emp, data_emp, id_livro, cpf_usuario) values ('"+emprestimo.getIdEmprestimo()+"','"+emprestimo.getTempoEmp()+"','"+emprestimo.getValorEmp()+"', '"+emprestimo.getDataEmp()+"','"+emprestimo.getLivroEmp()+"', '"+emprestimo.getUsuarioEmp()+"')";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,13 +37,9 @@ public class EmprestimoDao {
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
 
-            // System.out.println("result: " + result);
-
             if(result.next()){
-                // System.out.println("Entrou no true");
                 return true;
             }else{
-                // System.out.println("Entrou no false");
                 return false;
             } 
 
@@ -61,6 +57,28 @@ public class EmprestimoDao {
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    
+    public List<Emprestimo> buscarEmprestimos(){
+        String sql = "select * from emprestimos";
+        List<Emprestimo> emprestimos = new ArrayList<>();
+
+        try {
+            Statement stm = conexao.createStatement();
+            ResultSet result = stm.executeQuery(sql);
+
+            while(result.next()){
+                emprestimos.add(new Emprestimo(result.getInt("id_emprestimo"), result.getInt("tempo_emp"),  result.getDouble("valor_emp"),  result.getDate("data_emp"),  result.getInt("id_livro"),  result.getString("cpf_usuario")));
+            }
+
+            return emprestimos;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
         }
     }
 }

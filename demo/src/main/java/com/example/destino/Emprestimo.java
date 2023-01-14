@@ -10,7 +10,8 @@ public class Emprestimo{
     private int livroEmp;
     private String usuarioEmp;
 
-    public Emprestimo(int tempoEmp, double valorEmp, Date dataEm, int livroEmp, String usuarioEmp){
+    public Emprestimo(int id, int tempoEmp, double valorEmp, Date dataEm, int livroEmp, String usuarioEmp){
+        this.idEmprestimo = id;
         this.tempoEmp = tempoEmp;
         this.valorEmp = valorEmp;
         this.dataEmp = dataEm;
