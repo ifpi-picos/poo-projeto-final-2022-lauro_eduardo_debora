@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -31,19 +30,13 @@ public class UsuarioDao {
 
         String sql = "select cpf_usuario from usuarios where usuarios.cpf_usuario = '"+cpf_usuario+"' ";
 
-        System.out.println("cpf_usuario: " + cpf_usuario);
-
         try { 
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
 
-            // System.out.println("result: " + result);
-
             if(result.next()){
-                // System.out.println("Entrou no true");
                 return true;
             }else{
-                // System.out.println("Entrou no false");
                 return false;
             } 
 
@@ -53,16 +46,6 @@ public class UsuarioDao {
             return false;
         }
     }
-
-    /* public void alterarUsuario(String nome, String email, String senha, Date dataNascimento, String cpf_usuario){
-        try {
-            Statement stm = conexao.createStatement();
-            String sql = "update usuarios set nome = '"+nome+"', email = '"+email+"', senha = '"+senha+"', datanascimento = '"+dataNascimento+"' where cpf_usuario = '"+cpf_usuario+"'";
-            stm.executeUpdate(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } */
 
     public void alterarNomeUsuario(String nome, String cpf_usuario){
         try {

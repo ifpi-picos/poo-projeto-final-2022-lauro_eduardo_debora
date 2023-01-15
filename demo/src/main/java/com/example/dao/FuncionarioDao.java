@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -31,20 +30,13 @@ public class FuncionarioDao {
 
         String sql = "select cpf from funcionarios where funcionarios.cpf = '"+cpf+"' and funcionarios.cpf = '"+senha+"'";
 
-        System.out.println("CPF: \n" + cpf);
-        System.out.println("Senha: " + senha);
-
         try { 
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
 
-            // System.out.println("result: " + result);
-
             if(result.next()){
-                // System.out.println("Entrou no true");
                 return true;
             }else{
-                // System.out.println("Entrou no false");
                 return false;
             } 
 
@@ -59,19 +51,13 @@ public class FuncionarioDao {
 
         String sql = "select cpf from funcionarios where funcionarios.cpf = '"+cpf+"'";
 
-        System.out.println("CPF: \n" + cpf);
-
         try { 
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
 
-            // System.out.println("result: " + result);
-
             if(result.next()){
-                // System.out.println("Entrou no true");
                 return true;
             }else{
-                // System.out.println("Entrou no false");
                 return false;
             } 
 

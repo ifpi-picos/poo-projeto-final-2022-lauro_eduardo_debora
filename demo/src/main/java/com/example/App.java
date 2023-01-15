@@ -1,14 +1,8 @@
 package com.example;
 
-
-
 import java.text.ParseException;
-
 import java.util.ArrayList;
-
 import java.util.List;
-
-
 import javax.swing.JOptionPane;
 
 import com.example.dao.FuncionarioDao;
@@ -126,10 +120,10 @@ public class App
         List<Funcionario> funcionarios = new FuncionarioForm().listarFuncionarios();
         
         if(new FuncionarioForm().encontrarFuncionario(entrar, senha)){
-            // System.out.println("Passou do banco");
+            
             for(Funcionario funcionario : funcionarios){
                 if(entrar.equals(funcionario.getCPF()) && senha.equals(funcionario.getSenha())){
-                    System.out.println("Passou da lista");
+
                     List<Integer> menu = new ArrayList<>();
                     menu.add(1);
                     menu.add(2);
@@ -140,7 +134,6 @@ public class App
                     while (menu.get(menuSelecionado) != 4) {
                         menuSelecionado = menuFuncOpt(menu);
                         if (menuSelecionado+1 == 1) {
-                            System.out.println("Entrada: " + menuSelecionado);
                             int option = 0;
                             while(option != 4){
                                 option = menuFuncUsuario();
@@ -187,13 +180,9 @@ public class App
                                     funcionario.listarEmprestimos();
                                 }
                             }
-                            
                         }
                     }
-                }else{
-                    System.out.println("Não passou do banco");
-                }
-           
+                }           
             }
         }else{
             JOptionPane.showMessageDialog(null, "Funcionário não encontrado!");
@@ -233,7 +222,6 @@ public class App
 
                 }else if (menu_interativo.get(menuSelecionado) == 2){
                     String cpf = JOptionPane.showInputDialog("CPF: ");
-                    // String senha = JOptionPane.showInputDialog("Senha: ");
 
                     if(new FuncionarioDao().encontrarFuncionarioCPF(cpf)){
                         new FuncionarioDao().removerFuncionario(cpf);

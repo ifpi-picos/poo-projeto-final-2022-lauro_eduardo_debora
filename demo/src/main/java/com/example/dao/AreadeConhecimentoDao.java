@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -31,19 +30,13 @@ public class AreadeConhecimentoDao {
 
         String sql = "select titulo from areas_conhecimento where areas_conhecimento.titulo = '"+ titulo +"' ";
 
-        System.out.println("titulo: " + titulo);
-
         try { 
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
 
-            // System.out.println("result: " + result);
-
             if(result.next()){
-                // System.out.println("Entrou no true");
                 return true;
             }else{
-                // System.out.println("Entrou no false");
                 return false;
             } 
 

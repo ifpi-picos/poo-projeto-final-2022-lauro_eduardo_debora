@@ -2,13 +2,10 @@ package com.example.visao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import com.example.dao.AreadeConhecimentoDao;
-import com.example.dao.LivroDao;
 import com.example.destino.AreaConhecimento;
-import com.example.destino.Livro;
 
 public class AreaConhecimentoForm {
     

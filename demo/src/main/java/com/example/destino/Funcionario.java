@@ -1,20 +1,15 @@
 package com.example.destino;
 
-//import java.time.LocalDateTime;
 import java.util.Date;
-import java.io.Console;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-// import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import com.example.dao.AreadeConhecimentoDao;
 import com.example.dao.LivroDao;
-import com.example.dao.UsuarioDao;
 import com.example.visao.AreaConhecimentoForm;
 import com.example.visao.EmprestimoForm;
 import com.example.visao.EnderecoForm;

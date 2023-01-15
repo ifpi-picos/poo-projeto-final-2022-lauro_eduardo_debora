@@ -54,21 +54,13 @@ public class LivroDao {
 
         String sql = "select titulo from livros where livros.titulo = '"+ titulo +"' and livros.autor = '"+ autor +"' and livros.data_publicacao = '"+ datapublica +"' ";
 
-        System.out.println("Titulo: " + titulo);
-        System.out.println("Autor: " + autor);
-        System.out.println("Data: " + datapublica);
-
         try { 
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
 
-            // System.out.println("result: " + result);
-
             if(result.next()){
-                // System.out.println("Entrou no true");
                 return true;
             }else{
-                // System.out.println("Entrou no false");
                 return false;
             } 
 
@@ -83,15 +75,9 @@ public class LivroDao {
 
         String sql = "select id_livro from livros where livros.titulo = '"+ titulo +"' and livros.autor = '"+ autor +"' and livros.data_publicacao = '"+ datapublica +"' ";
 
-        System.out.println("Titulo: " + titulo);
-        System.out.println("Autor: " + autor);
-        System.out.println("Data: " + datapublica);
-
         try { 
             Statement stm = conexao.createStatement();
             ResultSet result = stm.executeQuery(sql);
-
-            // System.out.println("result: " + result);
 
             if(result.next()){
                 System.out.println("Entrou no true");

@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -30,8 +29,6 @@ public class EmprestimoDao {
     public boolean buscarEmprestimo(String cpf){
 
         String sql = "select id_emprestimo from emprestimos where emprestimos.cpf_usuario = '"+cpf+"'";
-
-        System.out.println("CPF: \n" + cpf);
 
         try { 
             Statement stm = conexao.createStatement();

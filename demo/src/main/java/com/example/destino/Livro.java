@@ -10,8 +10,7 @@ public class Livro{
     private int numCopias = 0;
     private String cpfFunc;
     private String area;
-
-    //String String String int Date String int
+    
 
     public Livro(int idlivro,String titulo, String autor, Date dataPublicacao, int numCopias, String cpffuncionario, String area){
         this.id_livro = idlivro;
