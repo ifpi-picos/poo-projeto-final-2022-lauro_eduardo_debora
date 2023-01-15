@@ -28,6 +28,28 @@ public class LivroDao {
         }
     }
 
+    public int quantLivro(String titulo, String autor){
+        String sql = "Select num_copias from livros where livros.titulo = '"+titulo+"' and livros.autor = '"+autor+"'";
+
+        try {
+            Statement stm = conexao.createStatement();
+            ResultSet result = stm.executeQuery(sql);
+
+            if(result.next()){
+                System.out.println("Entrou no true");
+                System.out.println(result.getInt("num_copias"));
+                return result.getInt("num_copias");
+            }else{
+                System.out.println("Entrou no false");
+                return 0;
+            } 
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public boolean buscarLivro(String titulo, String autor, Date datapublica){
 
         String sql = "select titulo from livros where livros.titulo = '"+ titulo +"' and livros.autor = '"+ autor +"' and livros.data_publicacao = '"+ datapublica +"' ";

@@ -1,28 +1,22 @@
 package com.example;
 
 
-import java.io.Console;
-/*import java.util.Date;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;*/
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-//import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-//import java.util.Random;
+
 
 import javax.swing.JOptionPane;
 
 import com.example.dao.FuncionarioDao;
-//import com.example.dao.UsuarioDao;
 import com.example.destino.Funcionario;
 import com.example.destino.Livro;
 import com.example.destino.Usuario;
 import com.example.visao.FuncionarioForm;
-//import com.example.visao.UsuarioForm;
+
 
 public class App 
 {

@@ -40,6 +40,10 @@ public class LivroForm {
         new LivroDao().deletarLivro(titulo, autor, data);
     }
 
+    public int totalLivro(String Titulo, String autor){
+        return new LivroDao().quantLivro(Titulo, autor);
+    }
+
     public void listarLivros(){
         List<Livro> livrosCadastrados = new LivroDao().buscarlivros();
         List<String> listLivros = new ArrayList<>();

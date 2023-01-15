@@ -346,54 +346,68 @@ public class Funcionario{
     public void realizarEmprestimo(String CPF) throws ParseException{
 
         try {
-            String nomeLivro = JOptionPane.showInputDialog("Nome do livro: ");
-            String nomeAutor = JOptionPane.showInputDialog("Nome do autor do livro: ");
-            String dataPub = JOptionPane.showInputDialog("Data de publicação: ");
+            String cpfUsuario = JOptionPane.showInputDialog("CPF do usuário: ");
+            if(new EmprestimoForm().encontrarEmprestimo(cpfUsuario)){
+                JOptionPane.showInternalMessageDialog(null, "CPF: " + cpfUsuario+ " já tem um empréstimo!");
+           }else{
+                String nomeLivro = JOptionPane.showInputDialog("Nome do livro: ");
+                String nomeAutor = JOptionPane.showInputDialog("Nome do autor do livro: ");
+                String dataPub = JOptionPane.showInputDialog("Data de publicação: ");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataPubForm = formatter.parse(dataPub);
+                int quant = new LivroForm().totalLivro(nomeLivro, nomeAutor);
 
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date dataPubForm = formatter.parse(dataPub);
+                if(quant > 0){
+                    if(new LivroForm().encontrarLivro(nomeLivro, nomeAutor, dataPubForm)){
 
-            if(new LivroForm().encontrarLivro(nomeLivro, nomeAutor, dataPubForm)){
-
-                // Dados livro
-                String tempoEmp = JOptionPane.showInputDialog("Tempo de empréstimo: ");
-                String valorEmp = JOptionPane.showInputDialog("Valor empréstimo: ");
-                int idLivro = new LivroDao().buscarIdLivro(nomeLivro, nomeAutor, dataPubForm);
-
-                int tempoEmpForm = Integer.parseInt(tempoEmp);
-                System.out.println(tempoEmpForm);
-
-                double valorEmpForm = Double.parseDouble(valorEmp);
-                System.out.println(valorEmpForm);
-
-
-                String cpfUsuario = JOptionPane.showInputDialog("CPF do usuário: ");
-                if(new UsuarioForm().encontrarUsuario(cpfUsuario)){
-
-                    // Adquirindo data atual e formatando
-                    Date date = new Date(System.currentTimeMillis());
-                    String dataS = formatter.format(date);
-                    Date dataAtual = formatter.parse(dataS);
-
-                    Random geradorConta = new Random();
-                    int num1 = geradorConta.nextInt(9);
-                    int num2 = geradorConta.nextInt(9);
-                    int num3 = geradorConta.nextInt(9);
-                    int num4 = geradorConta.nextInt(9);
-
-                    String id_emp = "" + num1 + num2 + num3 + num4;
-                    Integer id = Integer.parseInt(id_emp);
-
-                    new EmprestimoForm().cadastrarEmprestimo(id, tempoEmpForm, valorEmpForm, dataAtual, idLivro, cpfUsuario);
-
-                    JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
+                        // Dados livro
+                        String tempoEmp = JOptionPane.showInputDialog("Tempo de empréstimo: ");
+                        String valorEmp = JOptionPane.showInputDialog("Valor empréstimo: ");
+                        int idLivro = new LivroDao().buscarIdLivro(nomeLivro, nomeAutor, dataPubForm);
+    
+                        int tempoEmpForm = Integer.parseInt(tempoEmp);
+                        System.out.println(tempoEmpForm);
+    
+                        double valorEmpForm = Double.parseDouble(valorEmp);
+                        System.out.println(valorEmpForm);
+    
+    
+                        
+                        if(new UsuarioForm().encontrarUsuario(cpfUsuario)){
+    
+                            // Adquirindo data atual e formatando
+                            Date date = new Date(System.currentTimeMillis());
+                            String dataS = formatter.format(date);
+                            Date dataAtual = formatter.parse(dataS);
+    
+                            Random geradorConta = new Random();
+                            int num1 = geradorConta.nextInt(9);
+                            int num2 = geradorConta.nextInt(9);
+                            int num3 = geradorConta.nextInt(9);
+                            int num4 = geradorConta.nextInt(9);
+    
+                            String id_emp = "" + num1 + num2 + num3 + num4;
+                            Integer id = Integer.parseInt(id_emp);
+    
+                            new EmprestimoForm().cadastrarEmprestimo(id, tempoEmpForm, valorEmpForm, dataAtual, idLivro, cpfUsuario);
+    
+                            int val = quant - 1;
+    
+                            new LivroForm().alterarNumCop(nomeLivro, nomeAutor, dataPubForm, val);
+    
+                            JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
+    
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
+                        }
+    
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Livro não cadastrado!");
+                    }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
+                    JOptionPane.showMessageDialog(null, "Esse livro não pode ser emprestado!");
                 }
-
-            }else{
-                JOptionPane.showMessageDialog(null, "Livro não cadastrado!");
-            }
+           }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Dados inseridos incorretos!");
         }
